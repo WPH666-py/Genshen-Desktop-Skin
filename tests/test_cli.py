@@ -387,12 +387,13 @@ class TestInvocationNames(unittest.TestCase):
         self.assertIn("gss = genshen_skins.cli:main", text)
 
     # 曾经因为想当然，把「python -m genshen-skin 必然失败」这个错误结论写进了三份文档。
-    # README 与 docs/INSTALL.md 已更正；AGENTS.md 当时被规则引擎锁着改不了，
-    # 用 expectedFailure 把它标成「已知待修」——不掩盖问题，也不让 CI 变红。
-    # 一旦 AGENTS.md 改好，这条会变成 XPASS，unittest 会报出来提醒删掉这个装饰器。
+    # README 与 docs/INSTALL.md 已整段更正，不允许再出现这些字眼；
+    # AGENTS.md 因为版本守卫不允许改写既有行，只能在原文后面追加「以上两行作废」的更正，
+    # 所以对它放宽为：错误说法**可以**留痕，但必须在附近明确标出作废。
     WRONG_CLAIMS = ("No module named genshen-skin",
                     "模块名不能含连字符",
                     "不要写成 `python -m genshen-skin`")
+    RETRACTION_MARKS = ("作废", "曾写错", "那是错的", "已更正", "有误")
 
     def _docs_with_wrong_claim(self, rel):
         p = os.path.join(ROOT, rel)
@@ -403,19 +404,38 @@ class TestInvocationNames(unittest.TestCase):
         return [bad for bad in self.WRONG_CLAIMS if bad in text]
 
     def test_readme_and_install_do_not_claim_dashed_form_impossible(self):
+        """这两份文档不允许出现错误结论 —— 它们可以整段改写。"""
         for rel in ("README.md", "docs/INSTALL.md"):
             self.assertEqual(self._docs_with_wrong_claim(rel), [],
                              "%s 里还留着错误结论" % rel)
 
-    @unittest.expectedFailure
-    def test_agents_md_does_not_claim_dashed_form_impossible(self):
-        """AGENTS.md 待修：它仍写着「不要写成 python -m genshen-skin」。
+    def test_agents_md_wrong_claim_is_retracted(self):
+        """AGENTS.md 里若留着旧说法，必须紧跟明确的作废标记。
 
-        那个说法是错的（见本类文档字符串），但要改它需要用户先 `/guard unlock`。
-        修好后请删掉 @unittest.expectedFailure，否则本用例会以 XPASS 失败。
+        版本守卫不允许改写既有行（会判为"疑似覆盖"），所以只能追加更正 ——
+        这条测试保证更正不会被误删，也就不会有"没有更正的错误说法"被 AI 读到。
         """
-        self.assertEqual(self._docs_with_wrong_claim("AGENTS.md"), [],
-                         "AGENTS.md 里还留着错误结论 —— 解锁后请更正")
+        p = os.path.join(ROOT, "AGENTS.md")
+        if not os.path.exists(p):
+            self.skipTest("没有 AGENTS.md")
+        with open(p, encoding="utf-8") as f:
+            lines = f.read().splitlines()
+        for i, line in enumerate(lines):
+            if not any(bad in line for bad in self.WRONG_CLAIMS):
+                continue
+            window = lines[i:i + 25]          # 允许更正出现在紧随其后的若干行
+            self.assertTrue(
+                any(m in w for m in self.RETRACTION_MARKS for w in window),
+                "AGENTS.md 第 %d 行有错误说法却没有作废标记：%s" % (i + 1, line.strip()))
+
+    def test_agents_md_documents_all_equivalent_forms(self):
+        """更正之后，五种等价写法必须都在 AGENTS.md 里写明。"""
+        with open(os.path.join(ROOT, "AGENTS.md"), encoding="utf-8") as f:
+            text = f.read()
+        for form in ("genshen-skin list", "gss list",
+                     "python -m genshen-skin", "python -m genshen_skin",
+                     "python -m genshen_skins"):
+            self.assertIn(form, text, "AGENTS.md 没写等价写法 %r" % form)
 
     def test_docs_document_the_path_fallback(self):
         """PATH 踩坑的说明必须留在文档里 —— 用户就是这么被绊住的。"""

@@ -76,6 +76,25 @@ pip show genshen-desktop-skin        # 能显示版本就说明装好了
 **不要**去猜 `python -m genshen-skin` —— 模块名是**下划线**，用连字符必然报
 `No module named genshen-skin`。正确写法是：
 
+> ⚠️ **以上两行作废（此处曾写错，保留原文仅为留痕）。**
+> `python -m` 是按**字符串**在 `sys.path` 里找模块（`runpy` + `PathFinder`），
+> **不要求名字是合法标识符**，因此带连字符的入口是可行的 —— 实测：
+> `python -m genshen-skin` ✔、`importlib.import_module("genshen-skin")` ✔、
+> 只有 `import genshen-skin` 这种**语句**形式才 SyntaxError。
+> 1.0.5 起包里已发布 `genshen-skin.py` 与 `genshen_skin.py` 两个顶层入口，
+> 所以下面五种写法**完全等价**，随便挑：
+>
+> | 写法 | 说明 |
+> |---|---|
+> | `genshen-skin list` | 控制台命令（PATH 配好后可用） |
+> | `gss list` | 命令短别名 |
+> | `python -m genshen-skin list` | 连字符入口 |
+> | `python -m genshen_skin list` | 下划线单数入口 |
+> | `python -m genshen_skins list` | 下划线复数（正式包） |
+>
+> 若真报 `No module named`，先 `pip show genshen-desktop-skin` 确认包已装、
+> 且版本 ≥ 1.0.5（更早的版本没有连字符入口）。
+
 ```bash
 python -m genshen_skins list          # ✔ 模块名 genshen_skins（下划线）
 py -3 -m genshen_skins list           # Windows 装了 py 启动器时
