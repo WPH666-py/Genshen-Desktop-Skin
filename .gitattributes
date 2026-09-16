@@ -1,0 +1,20 @@
+# 统一换行，避免 Windows/macOS 之间来回改行尾
+* text=auto eol=lf
+
+# 桌宠脚本是 UTF-8 **带 BOM** 的，且在简体中文系统上必须靠 BOM 才不会被
+# Windows PowerShell 5.1 按 GBK 解析。标成 -text 让 git 逐字节原样保存，
+# 不做任何行尾转换，避免 BOM 或内容被动过。
+*.ps1 -text
+*.bat -text
+
+# 素材（若有）按二进制处理
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.mp3 binary
+*.wav binary
+*.ogg binary
+*.vsix binary
+*.ico binary

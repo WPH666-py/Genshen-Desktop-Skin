@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+
+# 打包/测试产物
+*.whl
+*.tar.gz
+.pytest_cache/
+.tox/
+
+# 本地临时
+_tmp/
+*.log

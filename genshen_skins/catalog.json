@@ -1,0 +1,1897 @@
+{
+  "schema": 1,
+  "family": "原神桌面皮肤集合 · Genshen Desktop Skin",
+  "owner": "WPH666-py",
+  "repo": "Genshen-Desktop-Skin",
+  "homepage": "https://github.com/WPH666-py/Genshen-Desktop-Skin",
+  "pypi": "genshen-desktop-skin",
+  "cli": "genshen-skin",
+  "count": 29,
+  "generated_at": "2026-09-16T01:05:15Z",
+  "targets": {
+    "dsh": "DeepSeek Harness 动态插件（cordis_define + cordis_run）",
+    "vscode": "VSCode / Trae / CodeX / Cursor / Windsurf / VSCodium（VSIX 扩展）",
+    "jetbrains": "PyCharm / IntelliJ / WebStorm（壁纸导出 + Background Image）",
+    "desktop": "Windows 桌面置顶桌宠（覆盖 PyCharm / claude-code / kimi-code / CodeX 等一切窗口）",
+    "deepking": "DeepKing 皮肤规范包（skin.json + CSS 变量 + 立绘）"
+  },
+  "usage": {
+    "pip": "pip install genshen-desktop-skin",
+    "list": "genshen-skin list",
+    "install": "genshen-skin install <id>",
+    "wallpaper": "genshen-skin wallpaper <id> <1|2|3|random>",
+    "pet": "genshen-skin pet <id>",
+    "ide": "genshen-skin ide <id>",
+    "dsh": "genshen-skin dsh <id>"
+  },
+  "skins": [
+    {
+      "id": "citlali",
+      "no": 1,
+      "repo": "Genshen-Citlali-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Citlali-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Citlali-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Citlali-Skin.git",
+      "char": "茜特拉莉",
+      "charEn": "Citlali",
+      "element": "冰",
+      "aliases": [
+        "茜特菈莉",
+        "citali",
+        "qitealali",
+        "紫粉星夜",
+        "星夜"
+      ],
+      "name": "茜特拉莉 · 紫粉星夜",
+      "nameEn": "Citlali · Purple Starry Night",
+      "accent": "#a855f7",
+      "tagline": "紫粉星夜：薰衣草淡紫与星辉粉，暗色为夜之紫",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-citlali-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/茜特拉莉皮肤.ps1",
+        "desktop_bat": "desktop/启动-茜特拉莉皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/茜特拉莉-web.jpg",
+        "dsh-plugin/素材/茜特拉莉-壁纸2-web.jpg",
+        "dsh-plugin/素材/茜特拉莉-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·灭口交给你们俩了.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-citlali-skin",
+        "displayName": "茜特拉莉动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "citlaliSkin.show",
+          "citlaliSkin.uninstall"
+        ],
+        "show": "citlaliSkin.show",
+        "uninstall": "citlaliSkin.uninstall"
+      }
+    },
+    {
+      "id": "skirk",
+      "no": 2,
+      "repo": "Genshen-Skirk-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Skirk-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Skirk-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Skirk-Skin.git",
+      "char": "丝柯克",
+      "charEn": "Skirk",
+      "element": "冰",
+      "aliases": [
+        "skirk",
+        "sikeke",
+        "霜刃渊海",
+        "渊海",
+        "极恶技"
+      ],
+      "name": "丝柯克 · 霜刃渊海",
+      "nameEn": "Skirk · Frostblade Abyss",
+      "accent": "#5f8cff",
+      "tagline": "霜刃渊海：霜白瓷面与寒蓝，暗色为渊海夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client.js",
+        "dsh_client_standalone": null,
+        "dsh_client_pair": null,
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-skirk-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/丝柯克皮肤.ps1",
+        "desktop_bat": "desktop/启动-丝柯克皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [
+        "无 client-standalone.js，DSH 使用 dsh-plugin/client.js（已内嵌素材，零配置可用）"
+      ],
+      "wallpapers": [
+        "dsh-plugin/素材/丝柯克-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·沉于渊海.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-skirk-skin",
+        "displayName": "丝柯克动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "skirkSkin.show",
+          "skirkSkin.uninstall"
+        ],
+        "show": "skirkSkin.show",
+        "uninstall": "skirkSkin.uninstall"
+      }
+    },
+    {
+      "id": "keqing",
+      "no": 3,
+      "repo": "Genshen-Keqing-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Keqing-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Keqing-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Keqing-Skin.git",
+      "char": "刻晴",
+      "charEn": "Keqing",
+      "element": "雷",
+      "aliases": [
+        "keqing",
+        "紫电雷鸣",
+        "天街巡游",
+        "玉衡星"
+      ],
+      "name": "刻晴 · 紫电雷鸣",
+      "nameEn": "Keqing · Violet Thunder",
+      "accent": "#8b5cf6",
+      "tagline": "紫电雷鸣：雷光浅紫与云白，暗色为雷夜深紫",
+      "caps": {
+        "dsh": true,
+        "desktop": false,
+        "vscode": false,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "client.js",
+        "dsh_client_standalone": null,
+        "dsh_client_pair": null,
+        "dsh_host": "host.js",
+        "dsh_assets": "素材",
+        "vsix": null,
+        "ext_pkg": null,
+        "desktop_ps1": null,
+        "desktop_bat": null,
+        "desktop_assets": null,
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "素材"
+      },
+      "notes": [
+        "无 client-standalone.js，DSH 使用 client.js（已内嵌素材，零配置可用）",
+        "该仓库暂未提供 Windows 桌宠脚本",
+        "该仓库暂未打包 VSIX 扩展"
+      ],
+      "wallpapers": [
+        "素材/刻晴-持剑战斗-web.jpg",
+        "素材/刻晴-校服抱臂-web.jpg",
+        "素材/刻晴-白衬衫-web.jpg"
+      ],
+      "voices": [
+        "素材/语音-元素爆发·其一.mp3"
+      ]
+    },
+    {
+      "id": "furina",
+      "no": 4,
+      "repo": "Genshen-Furina-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Furina-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Furina-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Furina-Skin.git",
+      "char": "芙宁娜",
+      "charEn": "Furina",
+      "element": "水",
+      "aliases": [
+        "furina",
+        "funingna",
+        "深蓝咏叹",
+        "万众狂欢",
+        "水神"
+      ],
+      "name": "芙宁娜 · 深蓝咏叹",
+      "nameEn": "Furina · Deep Blue Aria",
+      "accent": "#3d9dc9",
+      "tagline": "海蓝咏叹：潮汐瓷白与深蓝底色，暗色为深海军蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-furina-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/芙宁娜皮肤.ps1",
+        "desktop_bat": "desktop/启动-芙宁娜皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/芙宁娜-web.jpg",
+        "dsh-plugin/素材/芙宁娜-壁纸2-web.jpg",
+        "dsh-plugin/素材/芙宁娜-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-furina-skin",
+        "displayName": "芙宁娜动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "furinaSkin.show",
+          "furinaSkin.uninstall"
+        ],
+        "show": "furinaSkin.show",
+        "uninstall": "furinaSkin.uninstall"
+      }
+    },
+    {
+      "id": "hutao",
+      "no": 5,
+      "repo": "Genshen-Hutao-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Hutao-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Hutao-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Hutao-Skin.git",
+      "char": "胡桃",
+      "charEn": "Hutao",
+      "element": "火",
+      "aliases": [
+        "hutao",
+        "焰蝶飞白",
+        "蝶引来生",
+        "往生堂"
+      ],
+      "name": "胡桃 · 焰蝶飞白",
+      "nameEn": "Hutao · Ember Butterfly",
+      "accent": "#d92b1e",
+      "tagline": "焰蝶红枫：暖白瓷面与火焰红，暗色为炭红夜",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-hutao-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/胡桃皮肤.ps1",
+        "desktop_bat": "desktop/启动-胡桃皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/胡桃-web.jpg",
+        "dsh-plugin/素材/胡桃-壁纸2-web.jpg",
+        "dsh-plugin/素材/胡桃-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-hutao-skin",
+        "displayName": "胡桃动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "hutaoSkin.show",
+          "hutaoSkin.uninstall"
+        ],
+        "show": "hutaoSkin.show",
+        "uninstall": "hutaoSkin.uninstall"
+      }
+    },
+    {
+      "id": "kokomi",
+      "no": 6,
+      "repo": "Genshen-Kokomi-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Kokomi-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Kokomi-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Kokomi-Skin.git",
+      "char": "珊瑚宫心海",
+      "charEn": "Kokomi",
+      "element": "水",
+      "aliases": [
+        "心海",
+        "kokomi",
+        "xinhai",
+        "海月之誓",
+        "珊瑚宫"
+      ],
+      "name": "心海 · 海月之誓",
+      "nameEn": "Kokomi · Moonlit Vow",
+      "accent": "#3b8fd4",
+      "tagline": "海月之誓：海蓝瓷白与波光粉紫，暗色为渊海夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-kokomi-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/心海皮肤.ps1",
+        "desktop_bat": "desktop/启动-心海皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/心海-web.jpg",
+        "dsh-plugin/素材/心海-壁纸2-web.jpg",
+        "dsh-plugin/素材/心海-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-kokomi-skin",
+        "displayName": "心海动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "kokomiSkin.show",
+          "kokomiSkin.uninstall"
+        ],
+        "show": "kokomiSkin.show",
+        "uninstall": "kokomiSkin.uninstall"
+      }
+    },
+    {
+      "id": "ayaka",
+      "no": 7,
+      "repo": "Genshen-Ayaka-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Ayaka-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Ayaka-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Ayaka-Skin.git",
+      "char": "神里绫华",
+      "charEn": "Kamisato Ayaka",
+      "element": "冰",
+      "aliases": [
+        "绫华",
+        "ayaka",
+        "linghua",
+        "霜雪冰刃",
+        "神里"
+      ],
+      "name": "绫华 · 霜雪冰刃",
+      "nameEn": "Ayaka · Frostblade Sakura",
+      "accent": "#5a8fe0",
+      "tagline": "霜雪冰刃：冰蓝瓷白与樱粉点缀，暗色为冰夜深蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-ayaka-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/绫华皮肤.ps1",
+        "desktop_bat": "desktop/启动-绫华皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/绫华-web.jpg",
+        "dsh-plugin/素材/绫华-壁纸2-web.jpg",
+        "dsh-plugin/素材/绫华-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-ayaka-skin",
+        "displayName": "绫华动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "ayakaSkin.show",
+          "ayakaSkin.uninstall"
+        ],
+        "show": "ayakaSkin.show",
+        "uninstall": "ayakaSkin.uninstall"
+      }
+    },
+    {
+      "id": "yoimiya",
+      "no": 8,
+      "repo": "Genshen-Yoimiya-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Yoimiya-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Yoimiya-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Yoimiya-Skin.git",
+      "char": "宵宫",
+      "charEn": "Yoimiya",
+      "element": "火",
+      "aliases": [
+        "yoimiya",
+        "xiaogong",
+        "琉金云间草",
+        "烟花"
+      ],
+      "name": "宵宫 · 琉金云间草",
+      "nameEn": "Yoimiya · Ryuukin Saxifrage",
+      "accent": "#d9584a",
+      "tagline": "琉金云间草：烟火红橙与瓷白，暗色为星火夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-yoimiya-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/宵宫皮肤.ps1",
+        "desktop_bat": "desktop/启动-宵宫皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/宵宫-web.jpg",
+        "dsh-plugin/素材/宵宫-壁纸2-web.jpg",
+        "dsh-plugin/素材/宵宫-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-yoimiya-skin",
+        "displayName": "宵宫动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "yoimiyaSkin.show",
+          "yoimiyaSkin.uninstall"
+        ],
+        "show": "yoimiyaSkin.show",
+        "uninstall": "yoimiyaSkin.uninstall"
+      }
+    },
+    {
+      "id": "lumine",
+      "no": 9,
+      "repo": "Genshen-Lumine-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Lumine-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Lumine-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Lumine-Skin.git",
+      "char": "荧",
+      "charEn": "Lumine",
+      "element": "",
+      "aliases": [
+        "lumine",
+        "ying",
+        "旅行者",
+        "六元素",
+        "女主"
+      ],
+      "name": "荧 · 六元素随机",
+      "nameEn": "Lumine · Elemental Wanderer",
+      "accent": "#4a8fd8",
+      "tagline": "六元素随机：星海蓝白与金芒，暗色为星穹夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-lumine-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/荧皮肤.ps1",
+        "desktop_bat": "desktop/启动-荧皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/荧-web.jpg",
+        "dsh-plugin/素材/荧-壁纸2-web.jpg",
+        "dsh-plugin/素材/荧-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-岩.mp3",
+        "dsh-plugin/素材/语音-水.mp3",
+        "dsh-plugin/素材/语音-火.mp3",
+        "dsh-plugin/素材/语音-草.mp3",
+        "dsh-plugin/素材/语音-雷.mp3",
+        "dsh-plugin/素材/语音-风.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-lumine-skin",
+        "displayName": "荧动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "lumineSkin.show",
+          "lumineSkin.uninstall"
+        ],
+        "show": "lumineSkin.show",
+        "uninstall": "lumineSkin.uninstall"
+      }
+    },
+    {
+      "id": "shenhe",
+      "no": 10,
+      "repo": "Genshen-Shenhe-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Shenhe-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Shenhe-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Shenhe-Skin.git",
+      "char": "申鹤",
+      "charEn": "Shenhe",
+      "element": "冰",
+      "aliases": [
+        "shenhe",
+        "shenhe",
+        "神女遣灵真诀",
+        "神女"
+      ],
+      "name": "申鹤 · 神女遣灵真诀",
+      "nameEn": "Shenhe · Divine Maiden",
+      "accent": "#5a90d8",
+      "tagline": "神女遣灵真诀：银白瓷蓝与朱红，暗色为霜夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-shenhe-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/申鹤皮肤.ps1",
+        "desktop_bat": "desktop/启动-申鹤皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/申鹤-web.jpg",
+        "dsh-plugin/素材/申鹤-壁纸2-web.jpg",
+        "dsh-plugin/素材/申鹤-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-shenhe-skin",
+        "displayName": "申鹤动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "shenheSkin.show",
+          "shenheSkin.uninstall"
+        ],
+        "show": "shenheSkin.show",
+        "uninstall": "shenheSkin.uninstall"
+      }
+    },
+    {
+      "id": "eula",
+      "no": 11,
+      "repo": "Genshen-Eula-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Eula-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Eula-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Eula-Skin.git",
+      "char": "优菈",
+      "charEn": "Eula",
+      "element": "冰",
+      "aliases": [
+        "eula",
+        "youla",
+        "凝浪之光剑",
+        "浪花骑士"
+      ],
+      "name": "优菈 · 凝浪之光剑",
+      "nameEn": "Eula · Glacial Illumination",
+      "accent": "#5a90e0",
+      "tagline": "凝浪之光剑：冰蓝瓷白与霜紫，暗色为霜雪夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-eula-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/优菈皮肤.ps1",
+        "desktop_bat": "desktop/启动-优菈皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/优菈-web.jpg",
+        "dsh-plugin/素材/优菈-壁纸2-web.jpg",
+        "dsh-plugin/素材/优菈-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-eula-skin",
+        "displayName": "优菈动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "eulaSkin.show",
+          "eulaSkin.uninstall"
+        ],
+        "show": "eulaSkin.show",
+        "uninstall": "eulaSkin.uninstall"
+      }
+    },
+    {
+      "id": "sucrose",
+      "no": 12,
+      "repo": "Genshen-Sucrose-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Sucrose-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Sucrose-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Sucrose-Skin.git",
+      "char": "砂糖",
+      "charEn": "Sucrose",
+      "element": "风",
+      "aliases": [
+        "sucrose",
+        "shatang",
+        "风灵作成",
+        "炼金"
+      ],
+      "name": "砂糖 · 禁·风灵作成·柒伍式",
+      "nameEn": "Sucrose · Forbidden Creation",
+      "accent": "#e09c40",
+      "tagline": "禁·风灵作成·柒伍式：薄荷瓷白与琥珀，暗色为林中夜绿",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-sucrose-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/砂糖皮肤.ps1",
+        "desktop_bat": "desktop/启动-砂糖皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/砂糖-web.jpg",
+        "dsh-plugin/素材/砂糖-壁纸2-web.jpg",
+        "dsh-plugin/素材/砂糖-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-sucrose-skin",
+        "displayName": "砂糖动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "sucroseSkin.show",
+          "sucroseSkin.uninstall"
+        ],
+        "show": "sucroseSkin.show",
+        "uninstall": "sucroseSkin.uninstall"
+      }
+    },
+    {
+      "id": "nicole",
+      "no": 13,
+      "repo": "Genshen-Nicole-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Nicole-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Nicole-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Nicole-Skin.git",
+      "char": "尼可",
+      "charEn": "Nicole",
+      "element": "",
+      "aliases": [
+        "nicole",
+        "nike",
+        "圣言默示",
+        "天路历程"
+      ],
+      "name": "尼可 · 圣言默示·天路历程",
+      "nameEn": "Nicole · Starfall Pilgrimage",
+      "accent": "#4a8fd8",
+      "tagline": "圣言默示·天路历程：雪蓝瓷白与鎏金，暗色为星辉夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-nicole-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/尼可皮肤.ps1",
+        "desktop_bat": "desktop/启动-尼可皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/尼可-web.jpg",
+        "dsh-plugin/素材/尼可-壁纸2-web.jpg",
+        "dsh-plugin/素材/尼可-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-nicole-skin",
+        "displayName": "尼可动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "nicoleSkin.show",
+          "nicoleSkin.uninstall"
+        ],
+        "show": "nicoleSkin.show",
+        "uninstall": "nicoleSkin.uninstall"
+      }
+    },
+    {
+      "id": "barbara",
+      "no": 14,
+      "repo": "Genshen-Barbara-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Barbara-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Barbara-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Barbara-Skin.git",
+      "char": "芭芭拉",
+      "charEn": "Barbara",
+      "element": "水",
+      "aliases": [
+        "barbara",
+        "babala",
+        "闪耀奇迹",
+        "偶像"
+      ],
+      "name": "芭芭拉 · 闪耀奇迹",
+      "nameEn": "Barbara · Shining Miracle",
+      "accent": "#4a90d8",
+      "tagline": "闪耀奇迹：水蓝瓷白与浅金，暗色为澄水夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-barbara-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/芭芭拉皮肤.ps1",
+        "desktop_bat": "desktop/启动-芭芭拉皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/芭芭拉-web.jpg",
+        "dsh-plugin/素材/芭芭拉-壁纸2-web.jpg",
+        "dsh-plugin/素材/芭芭拉-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-barbara-skin",
+        "displayName": "芭芭拉动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "barbaraSkin.show",
+          "barbaraSkin.uninstall"
+        ],
+        "show": "barbaraSkin.show",
+        "uninstall": "barbaraSkin.uninstall"
+      }
+    },
+    {
+      "id": "collei",
+      "no": 15,
+      "repo": "Genshen-Collei-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Collei-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Collei-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Collei-Skin.git",
+      "char": "柯莱",
+      "charEn": "Collei",
+      "element": "草",
+      "aliases": [
+        "collei",
+        "kelai",
+        "猫猫秘宝",
+        "柯莱"
+      ],
+      "name": "柯莱 · 猫猫秘宝",
+      "nameEn": "Collei · Cuilein-Anbar",
+      "accent": "#62a83e",
+      "tagline": "猫猫秘宝：森青瓷白与紫晶，暗色为林间夜青",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-collei-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/柯莱皮肤.ps1",
+        "desktop_bat": "desktop/启动-柯莱皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/柯莱-web.jpg",
+        "dsh-plugin/素材/柯莱-壁纸2-web.jpg",
+        "dsh-plugin/素材/柯莱-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-collei-skin",
+        "displayName": "柯莱动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "colleiSkin.show",
+          "colleiSkin.uninstall"
+        ],
+        "show": "colleiSkin.show",
+        "uninstall": "colleiSkin.uninstall"
+      }
+    },
+    {
+      "id": "nilou",
+      "no": 16,
+      "repo": "Genshen-Nilou-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Nilou-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Nilou-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Nilou-Skin.git",
+      "char": "妮露",
+      "charEn": "Nilou",
+      "element": "水",
+      "aliases": [
+        "nilou",
+        "nilu",
+        "浮莲舞步",
+        "远梦聆泉",
+        "舞者"
+      ],
+      "name": "妮露 · 浮莲舞步·远梦聆泉",
+      "nameEn": "Nilou · Dance of the Lotus",
+      "accent": "#3f9fc9",
+      "tagline": "浮莲舞步·远梦聆泉：水蓝瓷白与莲紫，暗色为澄水夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-nilou-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/妮露皮肤.ps1",
+        "desktop_bat": "desktop/启动-妮露皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/妮露-web.jpg",
+        "dsh-plugin/素材/妮露-壁纸2-web.jpg",
+        "dsh-plugin/素材/妮露-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-nilou-skin",
+        "displayName": "妮露动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "nilouSkin.show",
+          "nilouSkin.uninstall"
+        ],
+        "show": "nilouSkin.show",
+        "uninstall": "nilouSkin.uninstall"
+      }
+    },
+    {
+      "id": "nahida",
+      "no": 17,
+      "repo": "Genshen-Nahida-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Nahida-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Nahida-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Nahida-Skin.git",
+      "char": "纳西妲",
+      "charEn": "Nahida",
+      "element": "草",
+      "aliases": [
+        "nahida",
+        "naxida",
+        "心景幻成",
+        "草神",
+        "小吉祥草王"
+      ],
+      "name": "纳西妲 · 心景幻成",
+      "nameEn": "Nahida · Illusory Heart",
+      "accent": "#4a9e46",
+      "tagline": "心景幻成：森青瓷白与金光，暗色为净善夜青",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-nahida-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/纳西妲皮肤.ps1",
+        "desktop_bat": "desktop/启动-纳西妲皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/纳西妲-web.jpg",
+        "dsh-plugin/素材/纳西妲-壁纸2-web.jpg",
+        "dsh-plugin/素材/纳西妲-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-nahida-skin",
+        "displayName": "纳西妲动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "nahidaSkin.show",
+          "nahidaSkin.uninstall"
+        ],
+        "show": "nahidaSkin.show",
+        "uninstall": "nahidaSkin.uninstall"
+      }
+    },
+    {
+      "id": "shogun",
+      "no": 18,
+      "repo": "Genshen-Shogun-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Shogun-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Shogun-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Shogun-Skin.git",
+      "char": "雷电将军",
+      "charEn": "Raiden Shogun",
+      "element": "雷",
+      "aliases": [
+        "雷电将军",
+        "shogun",
+        "raiden",
+        "leidian",
+        "梦想真说",
+        "雷神",
+        "影"
+      ],
+      "name": "雷电将军 · 奥义·梦想真说",
+      "nameEn": "Raiden Shogun · Musou Shinsetsu",
+      "accent": "#7a5ad8",
+      "tagline": "奥义·梦想真说：电紫瓷白与樱粉雷光，暗色为求道夜紫",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-shogun-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/雷电将军皮肤.ps1",
+        "desktop_bat": "desktop/启动-雷电将军皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/雷电将军-web.jpg",
+        "dsh-plugin/素材/雷电将军-壁纸2-web.jpg",
+        "dsh-plugin/素材/雷电将军-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-shogun-skin",
+        "displayName": "雷电将军动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "shogunSkin.show",
+          "shogunSkin.uninstall"
+        ],
+        "show": "shogunSkin.show",
+        "uninstall": "shogunSkin.uninstall"
+      }
+    },
+    {
+      "id": "ambor",
+      "no": 19,
+      "repo": "Genshen-Ambor-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Ambor-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Ambor-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Ambor-Skin.git",
+      "char": "安柏",
+      "charEn": "Amber",
+      "element": "火",
+      "aliases": [
+        "amber",
+        "ambor",
+        "anbo",
+        "箭雨",
+        "兔兔伯爵"
+      ],
+      "name": "安柏 · 箭雨",
+      "nameEn": "Amber · Fiery Rain",
+      "accent": "#d93a2e",
+      "tagline": "箭雨：兔兔红白与琥珀金，暗色为暗火夜红",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-ambor-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/安柏皮肤.ps1",
+        "desktop_bat": "desktop/启动-安柏皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/安柏-web.jpg",
+        "dsh-plugin/素材/安柏-壁纸2-web.jpg",
+        "dsh-plugin/素材/安柏-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-ambor-skin",
+        "displayName": "安柏动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "amborSkin.show",
+          "amborSkin.uninstall"
+        ],
+        "show": "amborSkin.show",
+        "uninstall": "amborSkin.uninstall"
+      }
+    },
+    {
+      "id": "yelan",
+      "no": 20,
+      "repo": "Genshen-Yelan-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Yelan-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Yelan-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Yelan-Skin.git",
+      "char": "夜兰",
+      "charEn": "Yelan",
+      "element": "水",
+      "aliases": [
+        "yelan",
+        "yelan",
+        "玄掷玲珑",
+        "夜兰"
+      ],
+      "name": "夜兰 · 玄掷玲珑",
+      "nameEn": "Yelan · Depth-Clarion Dice",
+      "accent": "#1f7fd4",
+      "tagline": "玄掷玲珑：玄青蓝白与碧水光，暗色为深海夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-yelan-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/夜兰皮肤.ps1",
+        "desktop_bat": "desktop/启动-夜兰皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/夜兰-web.jpg",
+        "dsh-plugin/素材/夜兰-壁纸2-web.jpg",
+        "dsh-plugin/素材/夜兰-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-yelan-skin",
+        "displayName": "夜兰动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "yelanSkin.show",
+          "yelanSkin.uninstall"
+        ],
+        "show": "yelanSkin.show",
+        "uninstall": "yelanSkin.uninstall"
+      }
+    },
+    {
+      "id": "zibai",
+      "no": 21,
+      "repo": "Genshen-Zibai-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Zibai-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Zibai-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Zibai-Skin.git",
+      "char": "兹白",
+      "charEn": "Zibai",
+      "element": "",
+      "aliases": [
+        "zibai",
+        "zibai",
+        "三垣威仪法",
+        "兹白"
+      ],
+      "name": "兹白 · 三垣威仪法",
+      "nameEn": "Zibai · Three Realms Ritual",
+      "accent": "#2f9e78",
+      "tagline": "三垣威仪法：青玄瓷白与月金，暗色为太阴夜青",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-zibai-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/兹白皮肤.ps1",
+        "desktop_bat": "desktop/启动-兹白皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/兹白-web.jpg",
+        "dsh-plugin/素材/兹白-壁纸2-web.jpg",
+        "dsh-plugin/素材/兹白-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-zibai-skin",
+        "displayName": "兹白动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "zibaiSkin.show",
+          "zibaiSkin.uninstall"
+        ],
+        "show": "zibaiSkin.show",
+        "uninstall": "zibaiSkin.uninstall"
+      }
+    },
+    {
+      "id": "ganyu",
+      "no": 22,
+      "repo": "Genshen-Ganyu-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Ganyu-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Ganyu-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Ganyu-Skin.git",
+      "char": "甘雨",
+      "charEn": "Ganyu",
+      "element": "冰",
+      "aliases": [
+        "ganyu",
+        "ganyu",
+        "降众天华",
+        "麒麟"
+      ],
+      "name": "甘雨 · 降众天华",
+      "nameEn": "Ganyu · Celestial Shower",
+      "accent": "#5a8fe0",
+      "tagline": "降众天华：冰蓝瓷白与金光，暗色为璃月夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-ganyu-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/甘雨皮肤.ps1",
+        "desktop_bat": "desktop/启动-甘雨皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/甘雨-web.jpg",
+        "dsh-plugin/素材/甘雨-壁纸2-web.jpg",
+        "dsh-plugin/素材/甘雨-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-ganyu-skin",
+        "displayName": "甘雨动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "ganyuSkin.show",
+          "ganyuSkin.uninstall"
+        ],
+        "show": "ganyuSkin.show",
+        "uninstall": "ganyuSkin.uninstall"
+      }
+    },
+    {
+      "id": "columbina",
+      "no": 23,
+      "repo": "Genshen-Columbina-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Columbina-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Columbina-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Columbina-Skin.git",
+      "char": "哥伦比娅",
+      "charEn": "Columbina",
+      "element": "",
+      "aliases": [
+        "columbina",
+        "gelunbiya",
+        "她的乡愁",
+        "少女",
+        "愚人众"
+      ],
+      "name": "哥伦比娅 · 她的乡愁",
+      "nameEn": "Columbina · Her Longing",
+      "accent": "#7a5fd8",
+      "tagline": "她的乡愁：月白鸢尾与靛紫，暗色为月蚀夜紫",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-columbina-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/哥伦比娅皮肤.ps1",
+        "desktop_bat": "desktop/启动-哥伦比娅皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/哥伦比娅-web.jpg",
+        "dsh-plugin/素材/哥伦比娅-壁纸2-web.jpg",
+        "dsh-plugin/素材/哥伦比娅-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-columbina-skin",
+        "displayName": "哥伦比娅动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "columbinaSkin.show",
+          "columbinaSkin.uninstall"
+        ],
+        "show": "columbinaSkin.show",
+        "uninstall": "columbinaSkin.uninstall"
+      }
+    },
+    {
+      "id": "linnea",
+      "no": 24,
+      "repo": "Genshen-Linnea-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Linnea-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Linnea-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Linnea-Skin.git",
+      "char": "莉奈娅",
+      "charEn": "Linnea",
+      "element": "",
+      "aliases": [
+        "linnea",
+        "linaiya",
+        "绝境生存指南",
+        "备忘"
+      ],
+      "name": "莉奈娅 · 备忘·绝境生存指南",
+      "nameEn": "Linnea · Survival Notes",
+      "accent": "#d94a68",
+      "tagline": "备忘·绝境生存指南：暮粉瓷白与蔷薇红，暗色为玫夜深红",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-linnea-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/莉奈娅皮肤.ps1",
+        "desktop_bat": "desktop/启动-莉奈娅皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/莉奈娅-web.jpg",
+        "dsh-plugin/素材/莉奈娅-壁纸2-web.jpg",
+        "dsh-plugin/素材/莉奈娅-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-linnea-skin",
+        "displayName": "莉奈娅动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "linneaSkin.show",
+          "linneaSkin.uninstall"
+        ],
+        "show": "linneaSkin.show",
+        "uninstall": "linneaSkin.uninstall"
+      }
+    },
+    {
+      "id": "escoffier",
+      "no": 25,
+      "repo": "Genshen-Escoffier-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Escoffier-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Escoffier-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Escoffier-Skin.git",
+      "char": "爱可菲",
+      "charEn": "Escoffier",
+      "element": "冰",
+      "aliases": [
+        "escoffier",
+        "aikefei",
+        "花刀技法",
+        "爱可菲"
+      ],
+      "name": "爱可菲 · 花刀技法",
+      "nameEn": "Escoffier · Fleur de Coupe",
+      "accent": "#3fb8e0",
+      "tagline": "花刀技法：奶油瓷白与冰蓝，暗色为蓝莓夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-escoffier-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/爱可菲皮肤.ps1",
+        "desktop_bat": "desktop/启动-爱可菲皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/爱可菲-web.jpg",
+        "dsh-plugin/素材/爱可菲-壁纸2-web.jpg",
+        "dsh-plugin/素材/爱可菲-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-escoffier-skin",
+        "displayName": "爱可菲动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "escoffierSkin.show",
+          "escoffierSkin.uninstall"
+        ],
+        "show": "escoffierSkin.show",
+        "uninstall": "escoffierSkin.uninstall"
+      }
+    },
+    {
+      "id": "navia",
+      "no": 26,
+      "repo": "Genshen-Navia-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Navia-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Navia-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Navia-Skin.git",
+      "char": "娜维娅",
+      "charEn": "Navia",
+      "element": "岩",
+      "aliases": [
+        "navia",
+        "naweiya",
+        "如霰澄天的鸣礼",
+        "刺玫会"
+      ],
+      "name": "娜维娅 · 如霰澄天的鸣礼",
+      "nameEn": "Navia · Salute of the Rime",
+      "accent": "#c8962c",
+      "tagline": "如霰澄天的鸣礼：鎏金瓷白与黑羽，暗色为曜石夜紫",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-navia-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/娜维娅皮肤.ps1",
+        "desktop_bat": "desktop/启动-娜维娅皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/娜维娅-web.jpg",
+        "dsh-plugin/素材/娜维娅-壁纸2-web.jpg",
+        "dsh-plugin/素材/娜维娅-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-navia-skin",
+        "displayName": "娜维娅动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "naviaSkin.show",
+          "naviaSkin.uninstall"
+        ],
+        "show": "naviaSkin.show",
+        "uninstall": "naviaSkin.uninstall"
+      }
+    },
+    {
+      "id": "mualani",
+      "no": 27,
+      "repo": "Genshen-Mualani-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Mualani-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Mualani-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Mualani-Skin.git",
+      "char": "玛拉妮",
+      "charEn": "Mualani",
+      "element": "水",
+      "aliases": [
+        "mualani",
+        "malani",
+        "爆瀑飞弹",
+        "玛拉妮"
+      ],
+      "name": "玛拉妮 · 爆瀑飞弹",
+      "nameEn": "Mualani · Boomsharka-laka",
+      "accent": "#2f9fd8",
+      "tagline": "爆瀑飞弹：海蓝瓷白与浪花，暗色为深浪夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-mualani-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/玛拉妮皮肤.ps1",
+        "desktop_bat": "desktop/启动-玛拉妮皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/玛拉妮-web.jpg",
+        "dsh-plugin/素材/玛拉妮-壁纸2-web.jpg",
+        "dsh-plugin/素材/玛拉妮-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-mualani-skin",
+        "displayName": "玛拉妮动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "mualaniSkin.show",
+          "mualaniSkin.uninstall"
+        ],
+        "show": "mualaniSkin.show",
+        "uninstall": "mualaniSkin.uninstall"
+      }
+    },
+    {
+      "id": "sandrone",
+      "no": 28,
+      "repo": "Genshen-Sandrone-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Sandrone-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Sandrone-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Sandrone-Skin.git",
+      "char": "桑多涅",
+      "charEn": "Sandrone",
+      "element": "",
+      "aliases": [
+        "sandrone",
+        "sangduonie",
+        "事象数式",
+        "万理证毕",
+        "木偶"
+      ],
+      "name": "桑多涅 · 事象数式·万理证毕",
+      "nameEn": "Sandrone · Axiomatic Proof",
+      "accent": "#a02838",
+      "tagline": "事象数式·万理证毕：瓷白沙金与赤绯，暗色为星渊夜蓝",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-sandrone-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/桑多涅皮肤.ps1",
+        "desktop_bat": "desktop/启动-桑多涅皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/桑多涅-web.jpg",
+        "dsh-plugin/素材/桑多涅-壁纸2-web.jpg",
+        "dsh-plugin/素材/桑多涅-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-sandrone-skin",
+        "displayName": "桑多涅动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "sandroneSkin.show",
+          "sandroneSkin.uninstall"
+        ],
+        "show": "sandroneSkin.show",
+        "uninstall": "sandroneSkin.uninstall"
+      }
+    },
+    {
+      "id": "clorinde",
+      "no": 29,
+      "repo": "Genshen-Clorinde-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Clorinde-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Clorinde-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Clorinde-Skin.git",
+      "char": "克洛琳德",
+      "charEn": "Clorinde",
+      "element": "雷",
+      "aliases": [
+        "clorinde",
+        "keluolinde",
+        "秉烛剔星月",
+        "决斗代理人"
+      ],
+      "name": "克洛琳德 · 秉烛剔星月",
+      "nameEn": "Clorinde · Star-Picking Ritual",
+      "accent": "#7a5fd8",
+      "tagline": "秉烛剔星月：紫电瓷白与金芒，暗色为雷夜紫渊",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-clorinde-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/克洛琳德皮肤.ps1",
+        "desktop_bat": "desktop/启动-克洛琳德皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/克洛琳德-web.jpg",
+        "dsh-plugin/素材/克洛琳德-壁纸2-web.jpg",
+        "dsh-plugin/素材/克洛琳德-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-clorinde-skin",
+        "displayName": "克洛琳德动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "clorindeSkin.show",
+          "clorindeSkin.uninstall"
+        ],
+        "show": "clorindeSkin.show",
+        "uninstall": "clorindeSkin.uninstall"
+      }
+    }
+  ]
+}
