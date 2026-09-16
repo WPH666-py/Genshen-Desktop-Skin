@@ -63,6 +63,55 @@ pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin    #
 
 `genshen-skin doctor` 会实测 pypi.org / 清华 / 中科大哪个通，并直接给出可用的安装命令。
 
+### ⚠️ 先解决一个必踩的坑：`genshen-skin` 找不到命令
+
+pip 装完通常会打印一句警告：`...\Scripts' which is not on PATH`。
+此时直接敲 `genshen-skin` 会报 `无法将"genshen-skin"项识别为 cmdlet…`（Windows）
+或 `command not found`（macOS / Linux）。**这不是安装失败** —— 先确认：
+
+```bash
+pip show genshen-desktop-skin        # 能显示版本就说明装好了
+```
+
+**不要**去猜 `python -m genshen-skin` —— 模块名是**下划线**，用连字符必然报
+`No module named genshen-skin`。正确写法是：
+
+```bash
+python -m genshen_skins list          # ✔ 模块名 genshen_skins（下划线）
+py -3 -m genshen_skins list           # Windows 装了 py 启动器时
+python3 -m genshen_skins list         # macOS / Linux
+```
+
+`python -m genshen_skins` 与 `genshen-skin` **完全等价**，PATH 没配好时优先用它，
+本文档后面所有 `genshen-skin xxx` 都可以照此替换。
+
+三个名字别混，这是用户最常卡住的地方：
+
+| 用途 | 写法 |
+|---|---|
+| pip 安装 | `pip install genshen-desktop-skin` |
+| 模块调用 | `python -m genshen_skins` |
+| 命令调用 | `genshen-skin`（别名 `gss`） |
+
+要用真正的 `genshen-skin` 命令就把 pip 的 Scripts 目录加进 PATH（永久，需重开终端）：
+
+```powershell
+# Windows：路径按实际 Python 安装位置调整
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
+```
+
+```bash
+# macOS / Linux：一般是 ~/.local/bin 或 Python 前缀下的 bin
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+找不到 Scripts 目录在哪时：
+
+```bash
+python -c "import sys,os; print(os.path.join(sys.base_prefix,'Scripts'))"   # Windows
+python -c "import sys,os; print(os.path.join(sys.base_prefix,'bin'))"       # macOS/Linux
+```
+
 **没有 Python 时**先装 Python：
 
 ```bash
