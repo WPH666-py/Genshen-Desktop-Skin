@@ -116,9 +116,52 @@ class TestCliOffline(TempHomeMixin):
         rc, out = run_cli("mirror", "--set", "nope")
         self.assertEqual(rc, 2)
 
-    def test_requires_subcommand(self):
+    def test_no_args_shows_all_commands(self):
+        """直接敲 `genshen-skin` 应打印全部命令总览，而不是参数错误。
+
+        这是「装完包之后用户想看到什么」——不该甩一个
+        "the following arguments are required: cmd"。
+        """
+        rc, out = run_cli()
+        self.assertEqual(rc, 0, "不带参数应当正常退出并给出帮助")
+        self.assertIn("全部命令总览", out)
+        # 每个子命令都要在总览里出现
+        for name in ("list", "show", "install", "uninstall", "wallpaper", "export",
+                     "pet", "ide", "dsh", "deepking", "sync", "vendor", "mirror",
+                     "env", "doctor", "catalog", "paths", "commands"):
+            self.assertIn(name, out, "命令总览里漏了 %s" % name)
+
+    def test_commands_subcommand_and_aliases(self):
+        for name in ("commands", "help", "?"):
+            rc, out = run_cli(name)
+            self.assertEqual(rc, 0, "`%s` 应返回 0" % name)
+            self.assertIn("全部命令总览", out, "`%s` 没有输出总览" % name)
+
+    def test_commands_help_mentions_key_flags(self):
+        rc, out = run_cli("commands")
+        for flag in ("--mode", "--fit", "--editor", "--keep-files",
+                     "--autostart", "--with-host", "--set", "--out"):
+            self.assertIn(flag, out, "命令总览里没提 %s" % flag)
+
+    def test_commands_help_mentions_all_five_forms(self):
+        rc, out = run_cli("commands")
+        for form in ("genshen-skin list", "gss list", "python -m genshen-skin list",
+                     "python -m genshen_skin list", "python -m genshen_skins list"):
+            self.assertIn(form, out, "命令总览里没写等价写法 %r" % form)
+
+    def test_commands_help_mentions_chinese_aliases(self):
+        rc, out = run_cli("commands")
+        for alias in ("水神", "草神", "雷神"):
+            self.assertIn(alias, out, "命令总览里没提中文别名 %s" % alias)
+
+    def test_unknown_command_still_errors(self):
+        """拼错的命令仍应报错，不能被总览吞掉。"""
         with self.assertRaises(SystemExit):
-            cli.main([])
+            cli.main(["nonexistent-cmd"])
+
+    def test_help_flag_still_works(self):
+        with self.assertRaises(SystemExit):
+            cli.main(["--help"])
 
     def test_env_runs(self):
         rc, out = run_cli("env")

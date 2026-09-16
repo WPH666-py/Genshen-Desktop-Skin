@@ -29,6 +29,16 @@ genshen-skin install furina          # 一键：壁纸 + IDE 扩展 + 桌宠
 genshen-skin wallpaper furina 2      # 只换壁纸（第 2 张）
 genshen-skin pet keqing              # 只要桌面桌宠
 genshen-skin env                     # 看看本机识别到了什么
+genshen-skin                         # 不带参数 = 打印全部命令总览
+```
+
+**装完不确定能用什么命令？直接敲 `genshen-skin`（不带参数）** —— 会打印一份按用途
+分组的完整命令总览（看目录 / 装·卸 / 单平台 / 镜像同步 / 诊断），每个命令的常用参数
+和示例都在里面。也可以用 `genshen-skin commands`（别名 `help`、`?`）。
+全局安装并立刻查看：
+
+```bash
+pip install --upgrade genshen-desktop-skin && genshen-skin
 ```
 
 `install` 会自动做三件事，并跳过本机不支持的部分：

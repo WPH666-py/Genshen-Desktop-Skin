@@ -658,6 +658,80 @@ def cmd_paths(args):
 
 
 # ---------------------------------------------------------------------------
+# 全部命令总览
+# ---------------------------------------------------------------------------
+COMMANDS_HELP = """原神桌面皮肤集合 · 全部命令总览
+
+用法： genshen-skin <命令> [参数]        直接敲 `genshen-skin` 就是这一页
+
+── 看目录 ─────────────────────────────────────────────────────────
+  list                     列出全部 29 套皮肤与各自可用环境
+  show <角色>              某套皮肤详情（壁纸清单 / 扩展 ID / 安装方式）
+  catalog                  打印机器可读目录      --md 表格  --json 原始
+  paths                    显示各类本地目录
+
+── 装 / 卸 ─────────────────────────────────────────────────────────
+  install <角色>           一键安装：桌面壁纸 + IDE 扩展 + 桌面桌宠
+       --mode 1|2|3|random      指定壁纸（默认 random）
+       --fit blur|cover|contain 壁纸适配（默认 blur，无黑边）
+       --editor vscode|trae|codex   只装到指定编辑器
+       --no-wallpaper / --no-ide / --no-pet   跳过其中某一步
+  uninstall <角色>         卸载：IDE 扩展 + 桌宠 + 开机自启 + 本地副本
+       --keep-files             保留已下载的素材（下次换壁纸不用重下）
+
+── 单平台 ──────────────────────────────────────────────────────────
+  wallpaper <角色> [模式]  切换桌面壁纸（模式：1 / 2 / 3 / random / --list）
+  export <角色> [--out 目录]     导出整屏壁纸给 PyCharm / JetBrains 当背景图
+  pet <角色>               桌面桌宠；--stop 停 / --autostart 开机自启 /
+                           --no-autostart 关自启 / --uninstall 卸桌宠
+  ide <角色>               VSIX 扩展；--list 看编辑器 / --editor 指定 / --uninstall 卸
+  dsh <角色>               DeepSeek Harness 动态插件载荷（--with-host 全画质）
+  deepking <角色>          DeepKing 皮肤规范包（--out 指定目录）
+
+── 镜像 / 同步 ─────────────────────────────────────────────────────
+  sync --all               克隆 29 个仓库到 ~/.genshen-skins
+  vendor --out <目录>      把 29 个仓库全部落地到指定目录（离线收藏）
+  mirror                   查看 pip 镜像与 GitHub 加速通道
+       --set tuna|ustc|aliyun|tencent|official   设为默认镜像
+
+── 诊断 ────────────────────────────────────────────────────────────
+  env                      检测本机环境（IDE / DSH / 代理 / 屏幕分辨率）
+  doctor                   体检：代理 / 网络 / 镜像 / git / Pillow
+  commands                 显示本页
+
+角色可以用中文名、英文名、拼音或别名，例如：
+  芙宁娜 = 水神 = furina      纳西妲 = 草神 = nahida
+  雷电将军 = 雷神 = shogun    神里绫华 = 绫华 = ayaka
+
+常用示例
+  genshen-skin list
+  genshen-skin install 芙宁娜
+  genshen-skin show 雷神
+  genshen-skin wallpaper furina 2
+  genshen-skin pet keqing
+  genshen-skin uninstall 芙宁娜
+
+五种等价写法（随便挑一种）
+  genshen-skin list
+  gss list
+  python -m genshen-skin list
+  python -m genshen_skin list
+  python -m genshen_skins list
+
+文档： https://github.com/WPH666-py/Genshen-Desktop-Skin
+"""
+
+
+def print_commands():
+    print(COMMANDS_HELP.rstrip())
+
+
+def cmd_commands(args):
+    print_commands()
+    return 0
+
+
+# ---------------------------------------------------------------------------
 # parser
 # ---------------------------------------------------------------------------
 def build_parser():
@@ -670,7 +744,14 @@ def build_parser():
                     version="genshen-desktop-skin %s" % __version__)
     ap.add_argument("--mirror", default=None,
                     help="pip 镜像: tuna(清华,默认) | ustc(中科大) | aliyun | tencent | official")
-    sub = ap.add_subparsers(dest="cmd", required=True)
+    # 不加 required=True：直接敲 `genshen-skin` 时打印全部命令总览，
+    # 而不是甩一个 "the following arguments are required: cmd" 的错误。
+    sub = ap.add_subparsers(dest="cmd")
+
+    # 命令总览（不带参数运行也会走到这里）
+    p = sub.add_parser("commands", aliases=["help", "?"],
+                       help="显示全部命令总览（直接敲 genshen-skin 同效）")
+    p.set_defaults(func=cmd_commands)
 
     sub.add_parser("list", help="列出全部 29 套皮肤").set_defaults(func=cmd_list)
 
@@ -771,7 +852,13 @@ def main(argv=None):
     prepare_console()
     ap = build_parser()
     args = ap.parse_args(argv)
-    if getattr(args, "cmd", None) == "sync" and not args.all and not args.key:
+
+    # 不带任何参数 → 展示全部命令（这正是「装完包之后想看到什么」）
+    if not getattr(args, "cmd", None):
+        print_commands()
+        return 0
+
+    if args.cmd == "sync" and not args.all and not args.key:
         ap.error("sync 需要 <角色> 或 --all")
     try:
         return args.func(args)
