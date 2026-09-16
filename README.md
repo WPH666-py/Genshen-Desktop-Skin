@@ -193,6 +193,41 @@ Genshen-Desktop-Skin/
 
 ---
 
+## 验证状态
+
+不靠"看起来能跑"，下面都是实际跑过的：
+
+**自动化（`python -m unittest discover -s tests -t .`，94 个用例，零依赖）**
+
+- catalog 自洽性：字段齐全、能力标记必须与文件路径一致（声称支持就得有对应文件）、
+  `idPrefix` 合法且互不重复、壁纸路径归属于素材目录、仓库根目录与包内两份 catalog 一致
+- 检索：中文名 / 英文名 / 别名（水神、草神、旅行者）/ 元素 / 序号 / 大小写
+- VSIX 全链路：读扩展 ID → 解压安装 → 覆盖安装（旧文件不残留）→ 卸载 → 损坏文件处理
+- 壁纸模式解析、镜像 URL 拼装、Windows 只读文件删除、三处版本号一致、README 与 catalog 不漂移
+
+**CI（[GitHub Actions](https://github.com/WPH666-py/Genshen-Desktop-Skin/actions)）**
+
+- Windows / macOS / Ubuntu × Python 3.8 / 3.11 / 3.12，9 个组合全绿
+- 额外校验：wheel 内含 catalog 与桌宠脚本、**桌宠脚本的 UTF-8 BOM 未丢**（丢了会让
+  Windows PowerShell 5.1 按 GBK 解析、中文全乱）、装好轮子后在仓库外冒烟
+- 每周定时比对上游皮肤仓库，catalog 落后时提醒重跑 `scripts/sync_catalog.py`
+
+**真机实测（Windows）**
+
+- 壁纸：真实设置系统壁纸成功；按 3072×1920 真实物理分辨率合成，立绘完整居中、
+  两侧同色系模糊填充、无黑边
+- DSH：芙宁娜 609 KB 载荷下载完整、4 处内嵌素材、未截断
+- 桌宠：进程起得来、可跨命令存活、`.pid` 与真实进程一致、窗口 `visible/TOPMOST/在屏内`；
+  被宿主 Job 回收导致秒退的问题已改走 explorer 启动解决
+- 克隆：`sync --all` 29/29 成功（259 MB，173 秒），镜像回退生效
+- PyPI：全新 venv 从官方源与清华源各装一次并冒烟通过
+
+> 已知环境限制：在虚拟化桌面（无 DWM 合成的远程/无头会话）里，WPF 分层窗口不会被绘制。
+> 用仓库自带的定制桌宠脚本做过对照，表现相同，因此这是环境限制而非本项目的问题。
+> 普通 Windows 桌面不受影响。
+
+---
+
 ## 版权
 
 安装器与脚本文档以 [MIT](LICENSE) 发布。
