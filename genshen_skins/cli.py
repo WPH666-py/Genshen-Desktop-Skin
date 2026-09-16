@@ -17,10 +17,8 @@
     genshen-skin uninstall <角色>          卸载（扩展 / 桌宠 / 本地副本）
 """
 import argparse
-import glob
 import json
 import os
-import shutil
 import sys
 
 from . import __version__
@@ -629,9 +627,15 @@ def cmd_uninstall(args):
     # 3) 本地副本
     if not args.keep_files:
         for d in (repo.skin_dir(skin["repo"]), desktop.pet_dir(skin), dsh.work_dir(skin)):
-            if os.path.isdir(d):
-                shutil.rmtree(d, ignore_errors=True)
+            if not os.path.isdir(d):
+                continue
+            if repo.rmtree(d):
                 print("[genshen] 已删除 %s" % d)
+            else:
+                left = sum(1 for _ in os.scandir(d)) if os.path.isdir(d) else 0
+                print("[genshen] 未能完全删除 %s（可能被占用，剩余 %d 项）" % (d, left),
+                      file=sys.stderr)
+                print("[genshen]   手动删除: rmdir /s /q \"%s\"" % d, file=sys.stderr)
     print()
     print("完成。DSH 动态插件请在 DSH 里 cordis_undefine <pluginId> 移除，")
     print("或直接用皮肤上的右键菜单「一键卸载」。")

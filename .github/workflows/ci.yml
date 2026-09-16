@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # 每周一 03:00 UTC 检查皮肤仓库是否有更新（catalog 是否过期）
+    - cron: "0 3 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: 测试 (${{ matrix.os }} / py${{ matrix.python }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.8", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: 运行测试套件
+        run: python -m unittest discover -s tests -t . -v
+
+      - name: 打包并校验 wheel/sdist
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.11'
+        run: |
+          python -m pip install --upgrade build twine
+          python -m build
+          python -m twine check dist/*
+
+      - name: 校验 wheel 内含目录与桌宠脚本
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.11'
+        run: |
+          python - <<'PY'
+          import glob, json, zipfile
+          whl = glob.glob("dist/*.whl")[0]
+          z = zipfile.ZipFile(whl)
+          names = z.namelist()
+          assert "genshen_skins/catalog.json" in names, "wheel 缺少 catalog.json"
+          assert "genshen_skins/assets/genshen-pet.ps1" in names, "wheel 缺少桌宠脚本"
+          # 桌宠脚本必须是 UTF-8 带 BOM，否则 Windows PowerShell 5.1 会按 GBK 解析
+          head = z.read("genshen_skins/assets/genshen-pet.ps1")[:3]
+          assert head == b"\xef\xbb\xbf", "桌宠脚本丢了 UTF-8 BOM"
+          cat = json.loads(z.read("genshen_skins/catalog.json"))
+          assert len(cat["skins"]) == 29, "catalog 皮肤数不是 29"
+          print("wheel 校验通过:", whl)
+          PY
+
+      - name: 安装并在仓库外冒烟测试
+        if: matrix.os == 'ubuntu-latest' && matrix.python == '3.11'
+        run: |
+          python -m pip install dist/*.whl
+          cd /tmp
+          genshen-skin list | head -3
+          genshen-skin --version
+
+  catalog:
+    name: catalog 是否过期
+    # 只在定时任务和手动触发时跑：上游皮肤仓库一更新，这项就会失败，
+    # 提示维护者重跑 scripts/sync_catalog.py 刷新能力矩阵。
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: 与 GitHub 上的皮肤仓库比对
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/sync_catalog.py --check

@@ -145,9 +145,36 @@ def download_tarball(repo, dst, branch=BRANCH, quiet=False):
     raise RuntimeError("源码包下载失败（%s）" % (last or "无可用通道"))
 
 
-def _rmtree(path):
-    import shutil
-    shutil.rmtree(path, ignore_errors=True)
+def rmtree(path):
+    """删除目录树（Windows 安全版）。
+
+    Windows 上 git 的 pack 文件带**只读**属性（`-ar---`），
+    `shutil.rmtree` 遇到它们会抛异常；而 `ignore_errors=True` 又会把异常**静默吞掉**，
+    结果是"报告删除成功、目录却还在"，只剩 `.git/objects/pack/*` 一堆残骸 ——
+    下次 `git clone` 到同一路径就会失败。所以这里显式清掉只读位再删。
+    """
+    import shutil as _shutil
+    import stat as _stat
+
+    if not path or not os.path.exists(path):
+        return True
+
+    def _on_error(func, p, _exc):
+        try:
+            os.chmod(p, _stat.S_IWRITE)
+            func(p)
+        except Exception:
+            pass
+
+    try:
+        _shutil.rmtree(path, onerror=_on_error)
+    except Exception:
+        pass
+    return not os.path.exists(path)
+
+
+# 兼容旧调用名
+_rmtree = rmtree
 
 
 # ---------------------------------------------------------------------------

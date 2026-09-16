@@ -86,7 +86,7 @@ def prepare(skin, generic=False, quiet=False):
         if not os.path.isdir(src):
             raise RuntimeError("%s 里没有 desktop/ 目录" % skin["repo"])
         if os.path.isdir(dst):
-            shutil.rmtree(dst, ignore_errors=True)
+            repo.rmtree(dst)
         shutil.copytree(src, dst)
         ps1 = os.path.join(dst, os.path.basename(paths["desktop_ps1"]))
         if not os.path.exists(ps1):
@@ -432,7 +432,7 @@ def uninstall(skin, quiet=False):
     set_autostart(skin, False, quiet=True)
     d = pet_dir(skin)
     if os.path.isdir(d):
-        shutil.rmtree(d, ignore_errors=True)
+        repo.rmtree(d)
     if not quiet:
         print("[genshen] 已卸载 %s 桌宠（含开机自启与本地文件）" % skin["char"])
-    return True
+    return not os.path.isdir(d)

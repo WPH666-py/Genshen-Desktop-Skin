@@ -213,9 +213,11 @@ def install_vsix(editor, vsix_path, quiet=False):
         return False, "找不到 %s 的扩展目录" % editor["name"]
     target = os.path.join(exts, ext_id)
     try:
+        import shutil as _shutil
+        from . import repo as _repo
         os.makedirs(exts, exist_ok=True)
         if os.path.isdir(target):
-            shutil.rmtree(target, ignore_errors=True)
+            _repo.rmtree(target)
         tmp = tempfile.mkdtemp(prefix="genshen-vsix-")
         with zipfile.ZipFile(vsix_path) as z:
             z.extractall(tmp)
@@ -244,7 +246,8 @@ def uninstall_vsix(editor, ext_id, quiet=False):
     if exts:
         target = os.path.join(exts, ext_id)
         if os.path.isdir(target):
-            shutil.rmtree(target, ignore_errors=True)
+            from . import repo as _repo
+            _repo.rmtree(target)
             return True, "已删除 %s" % target
     return False, "未能卸载 %s" % ext_id
 
