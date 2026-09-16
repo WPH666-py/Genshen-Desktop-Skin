@@ -39,6 +39,26 @@ genshen-skin env                     # 看看本机识别到了什么
 3. 启动 Windows 桌面置顶桌宠（悬浮于**所有**窗口之上，覆盖 PyCharm、claude-code、
    kimi-code、CodeX 等一切编辑器）。
 
+#### 提示 `无法将“genshen-skin”项识别为 cmdlet…`？
+
+装是成功的，只是 pip 的 `Scripts` 目录没在 `PATH` 里（pip 装完其实会打印一句
+`...Scripts' which is not on PATH` 的警告）。三种解法，任选其一：
+
+```powershell
+# ① 最省事：用模块方式调用（模块名是下划线 genshen_skins，不是连字符）
+py -3 -m genshen_skins list
+
+# ② 用完整路径直接调 exe
+& "$env:LOCALAPPDATA\Programs\Python\Python311\Scripts\genshen-skin.exe" list
+
+# ③ 永久把 Scripts 加进 PATH（之后重开终端，genshen-skin 就能直接用）
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
+```
+
+> `python -m genshen_skins` 与 `genshen-skin` **完全等价**。PATH 没配好时优先用它 ——
+> 本文档后面出现的 `genshen-skin` 都可以替换成 `python -m genshen_skins`。
+> macOS / Linux 上同理，把 `python` 换成 `python3`。
+
 ### ② 给 AI 一句话
 
 见顶部示例。AI 读取 `catalog.json`（29 套的能力矩阵）与 `AGENTS.md`（分环境安装指引），

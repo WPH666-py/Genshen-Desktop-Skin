@@ -300,5 +300,78 @@ class TestCatalogLookupModule(TempHomeMixin):
         self.assertTrue(os.path.exists(c.catalog_path()))
 
 
+class TestInvocationNames(unittest.TestCase):
+    """三个名字容易混：发行名 / 模块名 / 命令名。
+
+    真实踩坑记录：用户装完后敲 `genshen-skin` 报"找不到命令"（pip 的 Scripts 目录
+    不在 PATH），又试 `python -m genshen-skin` 报 `No module named genshen-skin`
+    （Python 模块名不能含连字符）。这里把正确的对应关系固定下来，
+    防止以后有人"顺手"把文档或入口点改错。
+    """
+
+    def test_module_is_importable_and_dash_free(self):
+        import importlib
+        m = importlib.import_module("genshen_skins")
+        self.assertTrue(hasattr(m, "__version__"))
+        # 带连字符的模块名在 Python 里根本不存在，必须报错
+        with self.assertRaises(ImportError):
+            importlib.import_module("genshen-skin")
+
+    def test_module_has_main_for_dash_m_invocation(self):
+        """`python -m genshen_skins` 要能用 —— 这正是 PATH 没配好时的兜底路径。"""
+        import importlib
+        m = importlib.import_module("genshen_skins.__main__")
+        self.assertTrue(hasattr(m, "main"), "genshen_skins/__main__.py 必须暴露 main")
+
+    def test_console_scripts_are_declared(self):
+        with open(os.path.join(ROOT, "pyproject.toml"), encoding="utf-8") as f:
+            text = f.read()
+        self.assertIn('genshen-skin = "genshen_skins.cli:main"', text,
+                      "pyproject 里 genshen-skin 入口点被改了")
+        self.assertIn('gss = "genshen_skins.cli:main"', text,
+                      "pyproject 里 gss 别名入口点被改了")
+
+    def test_setup_py_matches_pyproject_entry_points(self):
+        with open(os.path.join(ROOT, "setup.py"), encoding="utf-8") as f:
+            text = f.read()
+        self.assertIn("genshen-skin = genshen_skins.cli:main", text)
+        self.assertIn("gss = genshen_skins.cli:main", text)
+
+    def test_docs_never_suggest_dashed_module_name(self):
+        """文档里不能把 `python -m genshen-skin` 当作可用写法推荐出去。
+
+        注意：文档里**故意**出现这个错误写法来当反面教材（"⚠️ 不要写成 …"），
+        所以带警告标记的行要跳过，否则测试会误伤自己的示例。
+        """
+        warn_marks = ("不要", "不能", "错误", "会报", "⚠", "✗", "别写", "误")
+        for rel in ("README.md", "AGENTS.md", "docs/INSTALL.md"):
+            p = os.path.join(ROOT, rel)
+            if not os.path.exists(p):
+                continue
+            with open(p, encoding="utf-8") as f:
+                lines = f.read().splitlines()
+            for n, line in enumerate(lines, 1):
+                if any(m in line for m in warn_marks):
+                    continue
+                # 只看"像命令"的行：代码块里以 python/py 开头且用连字符模块名
+                for bad in ("python -m genshen-skin", "py -3 -m genshen-skin",
+                            "python3 -m genshen-skin", "python -m gss"):
+                    self.assertNotIn(
+                        bad, line,
+                        "%s 第 %d 行把错误写法当成了可用命令: %s" % (rel, n, line.strip()))
+
+    def test_docs_document_the_path_fallback(self):
+        """PATH 踩坑的说明必须留在文档里 —— 用户就是这么被绊住的。"""
+        for rel in ("README.md", "docs/INSTALL.md"):
+            p = os.path.join(ROOT, rel)
+            if not os.path.exists(p):
+                continue
+            with open(p, encoding="utf-8") as f:
+                text = f.read()
+            self.assertIn("genshen_skins", text, "%s 没写正确的模块名" % rel)
+            self.assertIn("PATH", text, "%s 没写 PATH 排查" % rel)
+            self.assertIn("Scripts", text, "%s 没写 Scripts 目录" % rel)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

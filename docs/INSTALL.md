@@ -145,6 +145,50 @@ python scripts/vendor_all.py --out D:\GenshenAll   # 等价脚本（带 .git 可
 
 ## 排错
 
+### `无法将“genshen-skin”项识别为 cmdlet…` / `command not found`
+
+**装是成功的，只是 pip 的 `Scripts` 目录不在 `PATH` 里。** pip 装完其实会打印一句
+`...\Scripts' which is not on PATH` 的警告，很容易被忽略。先确认包确实装了：
+
+```bash
+pip show genshen-desktop-skin        # 能显示版本就说明装好了
+```
+
+然后三选一：
+
+```powershell
+# ① 用模块方式调用 —— 模块名是下划线 genshen_skins，不是连字符 genshen-skin
+py -3 -m genshen_skins list
+
+# ② 用完整路径直接调 exe
+& "$env:LOCALAPPDATA\Programs\Python\Python311\Scripts\genshen-skin.exe" list
+
+# ③ 永久把 Scripts 加进 PATH（之后重开终端才生效）
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
+```
+
+> `python -m genshen_skins` 与 `genshen-skin` **完全等价**。
+> macOS / Linux 把 `py -3` 换成 `python3`，PATH 一般加 `~/.local/bin`。
+
+#### ⚠️ 不要写成 `python -m genshen-skin`
+
+会报 `No module named genshen-skin` —— Python 模块名不能含连字符。
+发行名（pip 用的）是 `genshen-desktop-skin`，模块名是 `genshen_skins`，
+命令名是 `genshen-skin`，三者不同，这是最常见的困惑点：
+
+| 用途 | 写法 |
+|---|---|
+| pip 安装 | `pip install genshen-desktop-skin` |
+| 模块调用 | `python -m genshen_skins` |
+| 命令调用 | `genshen-skin`（别名 `gss`） |
+
+找不到 Scripts 目录在哪：
+
+```bash
+python -c "import sys,os; print(os.path.join(sys.base_prefix,'Scripts'))"   # Windows
+python -c "import sys,os; print(os.path.join(sys.base_prefix,'bin'))"       # macOS/Linux
+```
+
 ### 装不上 pip 包 / 卡在 pypi.org
 
 ```bash
@@ -152,6 +196,9 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin
 pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin
 genshen-skin doctor        # 实测哪个源通
 ```
+
+下载包体时如果报 `SSL: UNEXPECTED_EOF_WHILE_READING`，通常是桌面代理只设了
+Windows 系统代理（pip 读不到）。换镜像即可，或给 pip 显式指定代理。
 
 详见 [MIRRORS.md](MIRRORS.md)。
 
