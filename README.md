@@ -46,7 +46,9 @@ genshen-skin env                     # 看看本机识别到了什么
 
 ```powershell
 # ① 最省事：用模块方式调用（模块名是下划线 genshen_skins，不是连字符）
+#    注：连字符写法 `python -m genshen-skin` 同样是有效的（见下方说明），两种随你
 py -3 -m genshen_skins list
+py -3 -m genshen-skin list
 
 # ② 用完整路径直接调 exe
 & "$env:LOCALAPPDATA\Programs\Python\Python311\Scripts\genshen-skin.exe" list
@@ -58,6 +60,21 @@ py -3 -m genshen_skins list
 > `python -m genshen_skins` 与 `genshen-skin` **完全等价**。PATH 没配好时优先用它 ——
 > 本文档后面出现的 `genshen-skin` 都可以替换成 `python -m genshen_skins`。
 > macOS / Linux 上同理，把 `python` 换成 `python3`。
+>
+> **五种写法完全等价**，挑顺手的用：
+>
+> | 写法 | 说明 |
+> |---|---|
+> | `genshen-skin list` | 控制台命令（PATH 配好后可用） |
+> | `gss list` | 上面那个的短别名 |
+> | `python -m genshen-skin list` | **连字符也合法** |
+> | `python -m genshen_skin list` | 下划线单数 |
+> | `python -m genshen_skins list` | 下划线复数（正式包名） |
+>
+> 关于连字符：`python -m` 是按**字符串**在 `sys.path` 里找模块的，**不要求名字是
+> 合法标识符**，所以带连字符的入口文件能被找到并执行。包里因此专门放了
+> `genshen-skin.py` 与 `genshen_skin.py` 两个顶层入口。
+> 只有 `import genshen-skin` 这种**语句**形式才是语法错误 —— 两回事，别混。
 
 ### ② 给 AI 一句话
 

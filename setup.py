@@ -7,12 +7,14 @@ from setuptools import setup
 
 setup(
     name="genshen-desktop-skin",
-    version="1.0.4",
+    version="1.0.5",
     description="原神桌面皮肤集合（29 套）：壁纸 / IDE 扩展 / DSH 插件 / Windows 桌宠 一键安装",
     author="WPH666-py",
     url="https://github.com/WPH666-py/Genshen-Desktop-Skin",
     license="MIT",
     packages=["genshen_skins"],
+    # 顶层兼容入口：让 `python -m genshen-skin` / `python -m genshen_skin` 也能用
+    py_modules=["genshen-skin", "genshen_skin"],
     package_data={"genshen_skins": ["catalog.json", "assets/*.ps1", "assets/*.bat"]},
     include_package_data=True,
     python_requires=">=3.8",

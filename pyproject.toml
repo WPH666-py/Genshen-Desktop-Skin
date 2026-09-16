@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "genshen-desktop-skin"
-version = "1.0.4"
+version = "1.0.5"
 description = "原神桌面皮肤集合（29 套）：壁纸 / VSCode·Trae·CodeX 扩展 / PyCharm 背景 / DSH 插件 / Windows 桌宠 一键安装"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -41,6 +41,10 @@ gss = "genshen_skins.cli:main"
 
 [tool.setuptools]
 packages = ["genshen_skins"]
+# 顶层兼容入口：让 `python -m genshen-skin` 与 `python -m genshen_skin` 也能用。
+# `python -m` 是按字符串在 sys.path 里找模块，不要求名字是合法标识符，
+# 所以带连字符的 genshen-skin.py 可行（`import genshen-skin` 才不行）。
+py-modules = ["genshen-skin", "genshen_skin"]
 include-package-data = true
 
 [tool.setuptools.package-data]

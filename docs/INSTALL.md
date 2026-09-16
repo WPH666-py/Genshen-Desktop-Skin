@@ -170,17 +170,33 @@ py -3 -m genshen_skins list
 > `python -m genshen_skins` 与 `genshen-skin` **完全等价**。
 > macOS / Linux 把 `py -3` 换成 `python3`，PATH 一般加 `~/.local/bin`。
 
-#### ⚠️ 不要写成 `python -m genshen-skin`
+#### 连字符写法也是合法的（曾经写错，特此更正）
 
-会报 `No module named genshen-skin` —— Python 模块名不能含连字符。
-发行名（pip 用的）是 `genshen-desktop-skin`，模块名是 `genshen_skins`，
-命令名是 `genshen-skin`，三者不同，这是最常见的困惑点：
+**更正**：本文档早先写过「连字符写法不能用、会报找不到模块」——**那是错的**。实测结论：
 
-| 用途 | 写法 |
+- `python -m genshen-skin` —— **可以**。`python -m` 按字符串在 `sys.path` 里找模块，
+  不要求名字是合法标识符；包里专门放了 `genshen-skin.py` 顶层入口来支持它。
+- `importlib.import_module("genshen-skin")` —— **可以**（同样是字符串查找）。
+- `import genshen-skin` —— **SyntaxError**。只有**语句**形式才要求合法标识符。
+
+所以下面五种写法完全等价，全都实测通过：
+
+| 写法 | 说明 |
 |---|---|
-| pip 安装 | `pip install genshen-desktop-skin` |
-| 模块调用 | `python -m genshen_skins` |
-| 命令调用 | `genshen-skin`（别名 `gss`） |
+| `genshen-skin list` | 控制台命令（PATH 配好后可用） |
+| `gss list` | 上面那个的短别名 |
+| `python -m genshen-skin list` | 连字符（顶层入口 `genshen-skin.py`） |
+| `python -m genshen_skin list` | 下划线单数（顶层入口 `genshen_skin.py`） |
+| `python -m genshen_skins list` | 下划线复数（正式包） |
+
+三个不同层次的名字对照 —— 这才是真正的困惑点：
+
+| 层次 | 名字 |
+|---|---|
+| pip 发行名 | `genshen-desktop-skin` |
+| 模块 / 包名 | `genshen_skins`（另有两个顶层别名入口） |
+| 命令名 | `genshen-skin`（别名 `gss`） |
+
 
 找不到 Scripts 目录在哪：
 
