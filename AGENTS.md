@@ -139,6 +139,24 @@ brew install python                   # macOS
 sudo apt install python3 python3-pil  # Ubuntu / Debian
 ```
 
+> ⚠️ **上面三条里的版本号只是举例，不是要求（保留原文仅为留痕）**：本项目
+> `requires-python = ">=3.8"`，**3.8 及以上任意版本都能用** —— CI 覆盖
+> 3.8 / 3.9 / 3.10 / 3.11 / 3.12 / 3.13 × Windows / macOS / Ubuntu 共 18 个组合。
+>
+> 同理，本文档里那条把 `...\Programs\Python\Python311\Scripts` 直接写进 PATH 的命令
+> **只在用户恰好也装的 3.11 时才成立**；装 3.12 / 3.13 / conda / Store 版的用户照抄会
+> 「路径不存在」。版本无关的写法是**从解释器自身推导**（任何版本、任何安装位置都对）：
+>
+> ```powershell
+> $s = python -c "import sys,os;print(os.path.dirname(sys.executable))"   # 该 python 的 Scripts 目录
+> [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$s", "User")
+> ```
+>
+> 还有一条多 Python 环境必踩的坑：**`py -3` 永远挑版本最高的那个 python**，未必是你
+> 装包的那一个（症状：`No module named genshen_skins`）。先 `py -0p` 列出本机全部版本，
+> 再用 `python -m pip show genshen-desktop-skin` 确认当前这个里到底有没有。
+> 一句话：**用哪个 python 装的，就用哪个 python 跑。**
+
 ---
 
 ## 路线 B：不装 pip 包，按环境手动装
