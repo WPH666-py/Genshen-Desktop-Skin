@@ -21,25 +21,30 @@ PyCharm / IntelliJ / WebStorm · claude-code · kimi-code · DeepKing · Windows
 
 ### ① pip 一条命令（推荐）
 
-```bash
-pip install genshen-desktop-skin     # 国内网络见下方「镜像」
+```powershell
+py -3 -m pip install genshen-desktop-skin     # 国内网络见下方「镜像」
 
-genshen-skin list                    # 看全部 29 套
-genshen-skin install furina          # 一键：壁纸 + IDE 扩展 + 桌宠
-genshen-skin wallpaper furina 2      # 只换壁纸（第 2 张）
-genshen-skin pet keqing              # 只要桌面桌宠
-genshen-skin env                     # 看看本机识别到了什么
-genshen-skin                         # 不带参数 = 打印全部命令总览
+py -3 -m genshen_skins list                   # 看全部 29 套
+py -3 -m genshen_skins install furina         # 一键：壁纸 + IDE 扩展 + 桌宠
+py -3 -m genshen_skins wallpaper furina 2     # 只换壁纸（第 2 张）
+py -3 -m genshen_skins pet keqing             # 只要桌面桌宠
+py -3 -m genshen_skins env                    # 看看本机识别到了什么
+py -3 -m genshen_skins                        # 不带参数 = 打印全部命令总览
 ```
 
-**装完不确定能用什么命令？直接敲 `genshen-skin`（不带参数）** —— 会打印一份按用途
+> **macOS / Linux 把 `py -3` 换成 `python3`**，其余完全一样。
+
+**装完不确定能用什么命令？直接跑 `py -3 -m genshen_skins`（不带参数）** —— 会打印一份按用途
 分组的完整命令总览（看目录 / 装·卸 / 单平台 / 镜像同步 / 诊断），每个命令的常用参数
-和示例都在里面。也可以用 `genshen-skin commands`（别名 `help`、`?`）。
-全局安装并立刻查看：
+和示例都在里面。也可以用 `py -3 -m genshen_skins commands`。
 
-```bash
-pip install --upgrade genshen-desktop-skin && genshen-skin
+升级到最新版：
+
+```powershell
+py -3 -m pip install --upgrade genshen-desktop-skin
 ```
+
+
 
 `install` 会自动做三件事，并跳过本机不支持的部分：
 
@@ -49,66 +54,27 @@ pip install --upgrade genshen-desktop-skin && genshen-skin
 3. 启动 Windows 桌面置顶桌宠（悬浮于**所有**窗口之上，覆盖 PyCharm、claude-code、
    kimi-code、CodeX 等一切编辑器）。
 
-#### 提示 `无法将“genshen-skin”项识别为 cmdlet…`？
-
-装是成功的，只是 pip 的 `Scripts` 目录没在 `PATH` 里（pip 装完其实会打印一句
-`...Scripts' which is not on PATH` 的警告）。三种解法，任选其一：
+#### 调用格式：Windows 统一 `py -3 -m`，macOS / Linux 统一 `python3 -m`
 
 ```powershell
-# ① 最省事：用模块方式调用（模块名是下划线 genshen_skins，不是连字符）
-#    注：连字符写法 `python -m genshen-skin` 同样是有效的（见下方说明），两种随你
-py -3 -m genshen_skins list
-py -3 -m genshen-skin list
-
-# ② 用完整路径直接调 exe
-& "$env:LOCALAPPDATA\Programs\Python\Python311\Scripts\genshen-skin.exe" list
-
-# ③ 永久把 Scripts 加进 PATH（之后重开终端，genshen-skin 就能直接用）
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
+py -3 -m genshen_skins list          # Windows
+python3 -m genshen_skins list        # macOS / Linux
 ```
 
-> ⚠️ **上面 ② ③ 两条写法已作废（保留原文仅为留痕）**：里面写死的
-> `%LOCALAPPDATA%\Programs\Python\Python311\Scripts` **只在你恰好也装的是 3.11 时才成立** ——
-> 装 3.12 / 3.13 / conda / Store 版 Python 的用户照着抄会找不到文件，报「路径不存在」。
-> 版本无关的正确写法是**从当前解释器推导路径**：
->
-> ```powershell
-> # ① 模块方式（用「你装包的那个 python」运行，3.8~3.13 任何版本都对）
-> python -m genshen_skins list
-> py -3 -m genshen_skins list          # Windows 装了 py 启动器时
-> python3 -m genshen_skins list        # macOS / Linux
->
-> # ② 打印你这个 python 的 Scripts 目录（exe 就在里面），再拿完整路径直接调
-> python -c "import sys,os;print(os.path.dirname(sys.executable))"
->
-> # ③ 永久加进用户 PATH（之后重开终端，genshen-skin 就能直接用）
-> $s = python -c "import sys,os;print(os.path.dirname(sys.executable))"
-> [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$s", "User")
-> ```
->
-> 另注：**`py -3` 永远挑版本最高的那个 python**，未必是你装包的那一个 ——
-> 报 `No module named genshen_skins` 时先 `py -0p` 列出本机全部版本，
-> 再用 `python -m pip show genshen-desktop-skin` 确认当前这个里到底有没有。
-> 一句话：**用哪个 python 装的，就用哪个 python 跑。**
+**这个形式不依赖 pip 的 `Scripts` 目录在不在 `PATH` 里** —— 所以
+「无法将"genshen-skin"项识别为 cmdlet」「command not found」这类报错，
+改用上面的写法就没了，**不需要去配 PATH**。
 
-> `python -m genshen_skins` 与 `genshen-skin` **完全等价**。PATH 没配好时优先用它 ——
-> 本文档后面出现的 `genshen-skin` 都可以替换成 `python -m genshen_skins`。
-> macOS / Linux 上同理，把 `python` 换成 `python3`。
->
-> **五种写法完全等价**，挑顺手的用：
->
-> | 写法 | 说明 |
-> |---|---|
-> | `genshen-skin list` | 控制台命令（PATH 配好后可用） |
-> | `gss list` | 上面那个的短别名 |
-> | `python -m genshen-skin list` | **连字符也合法** |
-> | `python -m genshen_skin list` | 下划线单数 |
-> | `python -m genshen_skins list` | 下划线复数（正式包名） |
->
-> 关于连字符：`python -m` 是按**字符串**在 `sys.path` 里找模块的，**不要求名字是
-> 合法标识符**，所以带连字符的入口文件能被找到并执行。包里因此专门放了
-> `genshen-skin.py` 与 `genshen_skin.py` 两个顶层入口。
-> 只有 `import genshen-skin` 这种**语句**形式才是语法错误 —— 两回事，别混。
+- `py -3` 挑的是本机**版本最高**的 Python，未必是装了包的那个
+  （症状：`No module named genshen_skins`）。先 `py -0p` 看全部版本，
+  再用 `py -3 -m pip show genshen-desktop-skin` 确认当前这个里有没有；
+  必要时指定版本，例如 `py -3.12 -m genshen_skins list`。
+- **不要**照着 `...\Programs\Python\Python3<版本>\Scripts` 这类**写死版本**的路径去配
+  `PATH` —— 那只在用户恰好也是那个版本时才成立（这是本项目踩过的坑）。
+- 连字符入口（`genshen-skin.py` / `genshen_skin.py`）包内同样保留、也仍然可用，
+  但**文档统一只推 `genshen_skins`（下划线复数，正式包名）这一种**，少一层困惑。
+
+
 
 ### ② 给 AI 一句话
 
@@ -128,19 +94,20 @@ git clone https://github.com/WPH666-py/Genshen-Furina-Skin
 
 ## 国内镜像
 
-PyPI 镜像（清华、中科大都是 PyPI 的只读镜像，自动同步）：
+PyPI 镜像（清华、中科大、阿里云、腾讯云都是 PyPI 的只读镜像，自动同步）：
 
-> 阿里云 / 腾讯云同样是只读镜像。`genshen-skin mirror` 会把**四个国内源**的装包命令
-> 与「怎么确认镜像已经同步」一起列出来；`genshen-skin doctor` 会逐个**实测**，
-> 直接给出当前网络下能用的那一条。
+> `py -3 -m genshen_skins mirror` 会把**四个国内源**的装包命令与「怎么确认镜像已经同步」
+> 一起列出来；`py -3 -m genshen_skins doctor` 会逐个**实测**，直接给出当前网络下能用的那一条。
 
-```bash
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin   # 清华 TUNA
-pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin    # 中科大 USTC
-pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin     # 阿里云
-pip install -i https://mirrors.cloud.tencent.com/pypi/simple genshen-desktop-skin   # 腾讯云
-genshen-skin mirror                                                            # 看全部镜像
+```powershell
+py -3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin      # 清华 TUNA
+py -3 -m pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin       # 中科大 USTC
+py -3 -m pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin        # 阿里云
+py -3 -m pip install -i https://mirrors.cloud.tencent.com/pypi/simple genshen-desktop-skin # 腾讯云
+py -3 -m genshen_skins mirror                                                              # 看全部镜像
 ```
+
+
 
 GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，无需手动配置）：
 
@@ -154,30 +121,34 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 
 代理也会自动探测：桌面代理软件通常只设 Windows 系统代理（git 能读、pip 读不到），
 本工具会把探测到的代理显式传给 git 与 pip。`GENSHEN_NO_PROXY=1` 关闭，
-`GENSHEN_PROXY=http://host:port` 手动指定。体检：`genshen-skin doctor`。
+`GENSHEN_PROXY=http://host:port` 手动指定。体检：`py -3 -m genshen_skins doctor`。
 
 ---
 
 ## 全部命令
 
-| 命令 | 作用 |
-|---|---|
-| `genshen-skin list` | 列出 29 套皮肤与各自可用环境 |
-| `genshen-skin show <角色>` | 查看某套的详情、壁纸、安装方式 |
-| `genshen-skin install <角色>` | 一键安装（壁纸 + 扩展 + 桌宠） |
-| `genshen-skin wallpaper <角色> [1\|2\|3\|random]` | 切换桌面壁纸 |
-| `genshen-skin export <角色> [--out 目录]` | 导出全部分辨率壁纸（PyCharm 背景图用） |
-| `genshen-skin pet <角色>` | 桌面桌宠：`--stop` / `--autostart` / `--no-autostart` / `--uninstall` |
-| `genshen-skin ide <角色>` | 装 VSIX 扩展；`--list` 看检测到的编辑器，`--uninstall` 卸载 |
-| `genshen-skin dsh <角色>` | 生成 DSH 动态插件载荷 + 操作单 |
-| `genshen-skin deepking <角色>` | 导出 DeepKing 皮肤规范包 |
-| `genshen-skin sync --all` | 把 29 个仓库克隆到 `~/.genshen-skins` |
-| `genshen-skin vendor --out <目录>` | 把 29 个仓库全部落地到指定目录（离线收藏） |
-| `genshen-skin env` / `doctor` / `paths` | 环境 / 体检 / 本地目录 |
-| `genshen-skin mirror [--set tuna\|ustc]` | 查看 / 设置镜像 |
-| `genshen-skin uninstall <角色>` | 卸载（扩展 + 桌宠 + 自启 + 本地副本） |
+> 下表统一按 **`py -3 -m genshen_skins <子命令>`** 调用（macOS / Linux 用 `python3 -m`）。
 
-角色可以用中文名、英文名、拼音或别名：`genshen-skin show 雷神`、`show shogun`、
+| 子命令 | 作用 |
+|---|---|
+| `list` | 列出 29 套皮肤与各自可用环境 |
+| `show <角色>` | 查看某套的详情、壁纸、安装方式 |
+| `install <角色>` | 一键安装（壁纸 + 扩展 + 桌宠） |
+| `wallpaper <角色> [1\|2\|3\|random]` | 切换桌面壁纸 |
+| `export <角色> [--out 目录]` | 导出全部分辨率壁纸（PyCharm 背景图用） |
+| `pet <角色>` | 桌面桌宠：`--stop` / `--autostart` / `--no-autostart` / `--uninstall` |
+| `ide <角色>` | 装 VSIX 扩展；`--list` 看检测到的编辑器，`--uninstall` 卸载 |
+| `dsh <角色>` | 生成 DSH 动态插件载荷 + 操作单 |
+| `deepking <角色>` | 导出 DeepKing 皮肤规范包 |
+| `sync --all` | 把 29 个仓库克隆到 `~/.genshen-skins` |
+| `vendor --out <目录>` | 把 29 个仓库全部落地到指定目录（离线收藏） |
+| `env` / `doctor` / `paths` | 环境 / 体检 / 本地目录 |
+| `mirror [--set tuna\|ustc\|aliyun\|tencent]` | 查看 / 设置镜像 |
+| `uninstall <角色>` | 卸载（扩展 + 桌宠 + 自启 + 本地副本） |
+
+
+
+角色可以用中文名、英文名、拼音或别名：`py -3 -m genshen_skins show 雷神`、`show shogun`、
 `show 草神`、`show furina` 都能命中。
 
 本地文件都在 `~/.genshen-skins/`（`GENSHEN_HOME` 可改），不会污染你的项目目录。
@@ -219,7 +190,7 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 | 29 | `clorinde` | 克洛琳德 · 秉烛剔星月 | 克洛琳德 | 雷 | `#7a5fd8` | 3 | ✅ | ✅ | ✅ | ✅ | [Genshen-Clorinde-Skin](https://github.com/WPH666-py/Genshen-Clorinde-Skin) |
 
 `壁纸` 列是该套可切换的壁纸张数；`—` 表示该皮肤仓库暂未提供对应形态
-（目前只有刻晴缺 VSIX 与桌宠脚本 —— `genshen-skin pet keqing` 会用内置通用桌宠补上）。
+（目前只有刻晴缺 VSIX 与桌宠脚本 —— `py -3 -m genshen_skins pet keqing` 会用内置通用桌宠补上）。
 
 完整机器可读目录见 [catalog.json](catalog.json)（含每套的真实文件路径、扩展 ID、
 命令 ID、壁纸清单与能力矩阵）。皮肤仓库有更新时，重跑
@@ -261,7 +232,7 @@ Genshen-Desktop-Skin/
 
 - **本仓库不含素材**，只放目录与安装器（< 1 MB）。素材按需从 29 个皮肤仓库拉取：
   单套皮肤更新后立刻生效，不必重推一个大仓库。想一次性全部落地用
-  `genshen-skin vendor --out <目录>`。
+  `py -3 -m genshen_skins vendor --out <目录>`。
 - **能力矩阵是实测出来的**，不是手写的：`scripts/sync_catalog.py` 读每个仓库的
   git tree、`skin.json`、`vscode-extension/package.json`，所以 `caps` 与 `paths`
   始终反映仓库真实内容（哪套缺 VSIX、哪套的 DSH 客户端在根目录，都如实记录）。
@@ -274,7 +245,7 @@ Genshen-Desktop-Skin/
 
 不靠"看起来能跑"，下面都是实际跑过的：
 
-**自动化（`python -m unittest discover -s tests -t .`，94 个用例，零依赖）**
+**自动化（`py -3 -m unittest discover -s tests -t .`，124 个用例，零依赖）**
 
 - catalog 自洽性：字段齐全、能力标记必须与文件路径一致（声称支持就得有对应文件）、
   `idPrefix` 合法且互不重复、壁纸路径归属于素材目录、仓库根目录与包内两份 catalog 一致
@@ -288,11 +259,11 @@ Genshen-Desktop-Skin/
 
 > ⚠️ **上面这行已过期（保留原文仅为留痕）**，1.0.8 起实际情况是：
 >
-> - 测试用例 **94 → 124 个**（`python -m unittest discover -s tests -t .`，零依赖）
+> - 测试用例 **94 → 124 个**（`py -3 -m unittest discover -s tests -t .`，零依赖）
 > - CI 矩阵 **9 → 18 个组合**：Windows / macOS / Ubuntu × **Python 3.8 / 3.9 / 3.10 / 3.11 / 3.12 / 3.13**
-> - 新增 `smoke` 作业：用 `python -m build` 打出来的 **wheel 发布产物**，在 3.8~3.13 上
->   **逐个 `pip install` 再真跑一次**（`genshen-skin list`、`python -m genshen_skins list`、
->   `python -m genshen-skin list`、`gss list` 四种入口都跑）——
+> - 新增 `smoke` 作业：用 `py -3 -m build` 打出来的 **wheel 发布产物**，在 3.8~3.13 上
+>   **逐个 `py -3 -m pip install` 再真跑一次**（`py -3 -m genshen_skins list` 这一种入口，
+>   连字符与下划线入口包内都保留，但文档里**只推这一种**）——
 >   「不管用户装的是哪个 Python 3 都能用」这条承诺由它守着。
 >
 >   为什么非要这样：单版本开发机上「一切正常」毫无意义 —— 本项目就出过一次

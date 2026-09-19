@@ -4,7 +4,7 @@
 
 ---
 
-## 一、PyPI 镜像（清华 / 中科大）：用于 `pip install`
+## 一、PyPI 镜像（清华 / 中科大 / 阿里 / 腾讯）：用于 `py -3 -m pip install`
 
 | 别名 | 名称 | index-url |
 |---|---|---|
@@ -16,13 +16,17 @@
 
 ### 装本包
 
-```bash
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin   # 清华
-pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin    # 中科大
-pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin     # 阿里云
+```powershell
+py -3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin      # 清华
+py -3 -m pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin       # 中科大
+py -3 -m pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin        # 阿里云
+py -3 -m pip install -i https://mirrors.cloud.tencent.com/pypi/simple genshen-desktop-skin # 腾讯云
 ```
 
-`genshen-skin doctor` 会实测这几个源哪个通，并直接给出可用的安装命令。
+`py -3 -m genshen_skins doctor` 会实测这几个源哪个通，并直接给出可用的安装命令。
+（macOS / Linux 把 `py -3` 换成 `python3`。）
+
+
 
 ### ⚠️ 关于「发布到清华源 / 中科大源」
 
@@ -32,7 +36,7 @@ pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin     #
 正确的流程只有一条：
 
 ```
-作者 python -m twine upload  ──►  pypi.org  ──(自动同步, 通常几分钟内)──►  清华 / 中科大 / 阿里 …
+作者 py -3 -m twine upload  ──►  pypi.org  ──(自动同步, 通常几分钟内)──►  清华 / 中科大 / 阿里 …
 ```
 
 所以本项目的发布流程是「**发一次 PyPI，国内镜像自动收录**」。发布后可以用下面两个地址
@@ -121,7 +125,7 @@ git 读注册表所以能用，而 pip / Python urllib **不读注册表**，只
 git 全局已经配了代理的话不会被覆盖。
 
 ```bash
-genshen-skin doctor        # 看探测结果 + 各源可达性
+py -3 -m genshen_skins doctor        # 看探测结果 + 各源可达性
 GENSHEN_NO_PROXY=1         # 关闭探测
 GENSHEN_PROXY=http://127.0.0.1:7897   # 手动指定
 ```
