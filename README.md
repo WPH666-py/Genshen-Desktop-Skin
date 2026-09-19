@@ -130,9 +130,15 @@ git clone https://github.com/WPH666-py/Genshen-Furina-Skin
 
 PyPI 镜像（清华、中科大都是 PyPI 的只读镜像，自动同步）：
 
+> 阿里云 / 腾讯云同样是只读镜像。`genshen-skin mirror` 会把**四个国内源**的装包命令
+> 与「怎么确认镜像已经同步」一起列出来；`genshen-skin doctor` 会逐个**实测**，
+> 直接给出当前网络下能用的那一条。
+
 ```bash
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin   # 清华 TUNA
 pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin    # 中科大 USTC
+pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin     # 阿里云
+pip install -i https://mirrors.cloud.tencent.com/pypi/simple genshen-desktop-skin   # 腾讯云
 genshen-skin mirror                                                            # 看全部镜像
 ```
 

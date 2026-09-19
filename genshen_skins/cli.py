@@ -239,31 +239,41 @@ def cmd_doctor(args):
                 return False, "TLS 握手失败(%s)" % reason.__class__.__name__
             return False, str(reason or e)[:46]
 
+    # 国内镜像逐个实测 —— 直接遍历 mirror.MIRROR_ORDER，镜像表一变这里自动跟上
+    # （此前只硬编码了清华与中科大，mirror.py 里明明有阿里云却测不到）
     checks = [
         ("GitHub 直连", "https://github.com"),
         ("raw.githubusercontent", "https://raw.githubusercontent.com"),
         ("jsDelivr CDN", "https://cdn.jsdelivr.net"),
         ("PyPI 官方源", "https://pypi.org/simple/"),
-        ("清华镜像 TUNA", mirror.PIP_MIRRORS["tuna"]["index"] + "/"),
-        ("中科大镜像 USTC", mirror.PIP_MIRRORS["ustc"]["index"] + "/"),
+    ] + [
+        ("%s 镜像" % mirror.PIP_MIRRORS[k]["name"], mirror.PIP_MIRRORS[k]["index"] + "/")
+        for k in mirror.MIRROR_ORDER
     ]
     res = {}
     for label, u in checks:
         ok, note = https_ok(u)
         res[label] = ok
-        print("  %-22s %-44s %s" % (label, note, "✅" if ok else "❌"))
+        print("  %-26s %-44s %s" % (label, note, "✅" if ok else "❌"))
 
     # 结论
     print()
-    if res.get("清华镜像 TUNA") or res.get("中科大镜像 USTC"):
-        best = "清华镜像 TUNA" if res.get("清华镜像 TUNA") else "中科大镜像 USTC"
-        print("结论: 镜像可用（%s）。装包命令：" % best)
-        m = mirror.PIP_MIRRORS["tuna" if best.endswith("TUNA") else "ustc"]
-        print("  pip install -i %s genshen-desktop-skin" % m["index"])
-    elif res.get("PyPI 官方源"):
+    working = [k for k in mirror.MIRROR_ORDER
+               if res.get("%s 镜像" % mirror.PIP_MIRRORS[k]["name"])]
+    if res.get("PyPI 官方源"):
         print("结论: pypi.org 正常，pip install genshen-desktop-skin 可直接用。")
+        if working:
+            print("      国内网络想更快，或用任一可用镜像：")
+            for k in working:
+                print("      pip install -i %s genshen-desktop-skin   # %s"
+                      % (mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
+    elif working:
+        print("结论: pypi.org 连不上，但以下镜像可用（任选一条）：")
+        for k in working:
+            print("  pip install -i %s genshen-desktop-skin   # %s"
+                  % (mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
     else:
-        print("结论: PyPI 与镜像都连不上，请检查网络或代理设置。")
+        print("结论: PyPI 与全部国内镜像都连不上，请检查网络或代理设置。")
 
     if res.get("GitHub 直连"):
         print("结论: GitHub 可直连，克隆皮肤仓库没问题。")
@@ -564,15 +574,16 @@ def show_mirrors():
     for k, m in mirror.PIP_MIRRORS.items():
         print("%-10s %-22s %s" % (k, m["name"], m["index"]))
     print()
-    print("国内装包（推荐）：")
-    print("  pip install -i %s genshen-desktop-skin" % mirror.PIP_MIRRORS["tuna"]["index"])
-    print("  pip install -i %s genshen-desktop-skin" % mirror.PIP_MIRRORS["ustc"]["index"])
+    print("国内装包（推荐，任选一条）：")
+    for k in mirror.MIRROR_ORDER:
+        print("  pip install -i %s genshen-desktop-skin   # %s"
+              % (mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
     print()
-    print("说明：清华源与中科大源是 PyPI 的**只读镜像**，会自动从 pypi.org 同步；")
+    print("说明：上述国内源都是 PyPI 的**只读镜像**，会自动从 pypi.org 同步；")
     print("      作者只能发布到 PyPI，镜像随后自动收录（清华通常几分钟内）。")
     print("      发布后可用以下地址确认镜像是否已同步：")
-    for k in ("tuna", "ustc"):
-        print("        %s" % mirror.PIP_MIRRORS[k]["web"])
+    for k in mirror.MIRROR_ORDER:
+        print("        %-58s %s" % (mirror.PIP_MIRRORS[k]["web"], mirror.PIP_MIRRORS[k]["name"]))
     print()
     print("GitHub 加速通道（用于克隆皮肤仓库 / 下载 raw 文件）")
     print()
