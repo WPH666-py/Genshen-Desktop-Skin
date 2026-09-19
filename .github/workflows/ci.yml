@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python: ["3.8", "3.11", "3.12"]
+        python: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
     steps:
       - uses: actions/checkout@v4
 
@@ -79,3 +79,55 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/sync_catalog.py --check
+
+  build:
+    name: 打包发布产物
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 打包
+        run: |
+          python -m pip install --upgrade build twine
+          python -m build
+          python -m twine check dist/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/*
+
+  smoke:
+    name: 装 wheel 真跑一次 (py${{ matrix.python }})
+    # 「不管用户装的是哪个 Python 3 都能用」这条承诺，靠这里逐个版本装**发布产物**来守。
+    # 只跑 3.11 的话，3.8 那种「pip 装成功、一跑就崩」的问题会漏到用户手上。
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: 从 wheel 安装并在仓库外运行
+        run: |
+          python -m pip install dist/*.whl
+          cd /tmp
+          python -c "import sys, genshen_skins; print('import OK:', sys.version.split()[0])"
+          genshen-skin --version
+          genshen-skin list | head -3
+          python -m genshen_skins list | head -3
+          python -m genshen-skin list | head -3
+          gss list | head -3

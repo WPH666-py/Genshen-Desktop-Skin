@@ -67,6 +67,30 @@ py -3 -m genshen-skin list
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
 ```
 
+> ⚠️ **上面 ② ③ 两条写法已作废（保留原文仅为留痕）**：里面写死的
+> `%LOCALAPPDATA%\Programs\Python\Python311\Scripts` **只在你恰好也装的是 3.11 时才成立** ——
+> 装 3.12 / 3.13 / conda / Store 版 Python 的用户照着抄会找不到文件，报「路径不存在」。
+> 版本无关的正确写法是**从当前解释器推导路径**：
+>
+> ```powershell
+> # ① 模块方式（用「你装包的那个 python」运行，3.8~3.13 任何版本都对）
+> python -m genshen_skins list
+> py -3 -m genshen_skins list          # Windows 装了 py 启动器时
+> python3 -m genshen_skins list        # macOS / Linux
+>
+> # ② 打印你这个 python 的 Scripts 目录（exe 就在里面），再拿完整路径直接调
+> python -c "import sys,os;print(os.path.dirname(sys.executable))"
+>
+> # ③ 永久加进用户 PATH（之后重开终端，genshen-skin 就能直接用）
+> $s = python -c "import sys,os;print(os.path.dirname(sys.executable))"
+> [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$s", "User")
+> ```
+>
+> 另注：**`py -3` 永远挑版本最高的那个 python**，未必是你装包的那一个 ——
+> 报 `No module named genshen_skins` 时先 `py -0p` 列出本机全部版本，
+> 再用 `python -m pip show genshen-desktop-skin` 确认当前这个里到底有没有。
+> 一句话：**用哪个 python 装的，就用哪个 python 跑。**
+
 > `python -m genshen_skins` 与 `genshen-skin` **完全等价**。PATH 没配好时优先用它 ——
 > 本文档后面出现的 `genshen-skin` 都可以替换成 `python -m genshen_skins`。
 > macOS / Linux 上同理，把 `python` 换成 `python3`。
@@ -255,6 +279,19 @@ Genshen-Desktop-Skin/
 **CI（[GitHub Actions](https://github.com/WPH666-py/Genshen-Desktop-Skin/actions)）**
 
 - Windows / macOS / Ubuntu × Python 3.8 / 3.11 / 3.12，9 个组合全绿
+
+> ⚠️ **上面这行已过期（保留原文仅为留痕）**，1.0.8 起实际情况是：
+>
+> - 测试用例 **94 → 124 个**（`python -m unittest discover -s tests -t .`，零依赖）
+> - CI 矩阵 **9 → 18 个组合**：Windows / macOS / Ubuntu × **Python 3.8 / 3.9 / 3.10 / 3.11 / 3.12 / 3.13**
+> - 新增 `smoke` 作业：用 `python -m build` 打出来的 **wheel 发布产物**，在 3.8~3.13 上
+>   **逐个 `pip install` 再真跑一次**（`genshen-skin list`、`python -m genshen_skins list`、
+>   `python -m genshen-skin list`、`gss list` 四种入口都跑）——
+>   「不管用户装的是哪个 Python 3 都能用」这条承诺由它守着。
+>
+>   为什么非要这样：单版本开发机上「一切正常」毫无意义 —— 本项目就出过一次
+>   **pip 装成功、第一条命令就崩** 的事故（`importlib.resources.files()` 是 3.9+ 的 API，
+>   而声明的是 `requires-python >= 3.8`；3.8 上 `AttributeError`）。只有跑矩阵才看得见。
 - 额外校验：wheel 内含 catalog 与桌宠脚本、**桌宠脚本的 UTF-8 BOM 未丢**（丢了会让
   Windows PowerShell 5.1 按 GBK 解析、中文全乱）、装好轮子后在仓库外冒烟
 - 每周定时比对上游皮肤仓库，catalog 落后时提醒重跑 `scripts/sync_catalog.py`

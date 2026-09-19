@@ -167,6 +167,24 @@ py -3 -m genshen_skins list
 [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
 ```
 
+> ⚠️ **上面 ② ③ 两条写法已作废（保留原文仅为留痕）**：写死的
+> `%LOCALAPPDATA%\Programs\Python\Python311\Scripts` **只在你恰好也装的是 3.11 时才成立**；
+> 装 3.12 / 3.13 / conda / Store 版 Python 的用户照着抄会「路径不存在」。
+> 版本无关的正确写法是**从当前解释器推导**（3.8~3.13 任何版本、任何安装位置都对）：
+>
+> ```powershell
+> # ② 打印你这个 python 的 Scripts 目录（exe 就在里面），再拿完整路径直接调
+> python -c "import sys,os;print(os.path.dirname(sys.executable))"
+>
+> # ③ 永久加进用户 PATH（之后重开终端才生效）
+> $s = python -c "import sys,os;print(os.path.dirname(sys.executable))"
+> [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$s", "User")
+> ```
+>
+> 顺带记一条**多 Python 环境必踩的坑**：`py -3` 永远挑版本最高的那个 python，
+> 未必是你装包的那一个（症状：`No module named genshen_skins`）。
+> `py -0p` 列出本机全部版本 → `python -m pip show genshen-desktop-skin` 确认当前这个装没装。
+
 > `python -m genshen_skins` 与 `genshen-skin` **完全等价**。
 > macOS / Linux 把 `py -3` 换成 `python3`，PATH 一般加 `~/.local/bin`。
 

@@ -17,7 +17,7 @@
     genshen-skin list
     genshen-skin install furina
 """
-__version__ = "1.0.7"
+__version__ = "1.0.8"
 __all__ = ["load_catalog", "find_skin", "skin_repo_url", "__version__"]
 
 from .catalog import load_catalog, find_skin, skin_repo_url  # noqa: E402,F401
