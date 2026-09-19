@@ -260,18 +260,19 @@ def cmd_doctor(args):
     print()
     working = [k for k in mirror.MIRROR_ORDER
                if res.get("%s 镜像" % mirror.PIP_MIRRORS[k]["name"])]
+    px = mirror.py_prefix()
     if res.get("PyPI 官方源"):
-        print("结论: pypi.org 正常，pip install genshen-desktop-skin 可直接用。")
+        print("结论: pypi.org 正常，%s pip install genshen-desktop-skin 可直接用。" % px)
         if working:
             print("      国内网络想更快，或用任一可用镜像：")
             for k in working:
-                print("      pip install -i %s genshen-desktop-skin   # %s"
-                      % (mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
+                print("      %s pip install -i %s genshen-desktop-skin   # %s"
+                      % (px, mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
     elif working:
         print("结论: pypi.org 连不上，但以下镜像可用（任选一条）：")
         for k in working:
-            print("  pip install -i %s genshen-desktop-skin   # %s"
-                  % (mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
+            print("  %s pip install -i %s genshen-desktop-skin   # %s"
+                  % (px, mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
     else:
         print("结论: PyPI 与全部国内镜像都连不上，请检查网络或代理设置。")
 
@@ -575,9 +576,10 @@ def show_mirrors():
         print("%-10s %-22s %s" % (k, m["name"], m["index"]))
     print()
     print("国内装包（推荐，任选一条）：")
+    px = mirror.py_prefix()
     for k in mirror.MIRROR_ORDER:
-        print("  pip install -i %s genshen-desktop-skin   # %s"
-              % (mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
+        print("  %s pip install -i %s genshen-desktop-skin   # %s"
+              % (px, mirror.PIP_MIRRORS[k]["index"], mirror.PIP_MIRRORS[k]["name"]))
     print()
     print("说明：上述国内源都是 PyPI 的**只读镜像**，会自动从 pypi.org 同步；")
     print("      作者只能发布到 PyPI，镜像随后自动收录（清华通常几分钟内）。")

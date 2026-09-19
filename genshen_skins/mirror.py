@@ -80,6 +80,17 @@ def pip_index(name):
     return PIP_MIRRORS.get(name, PIP_MIRRORS["official"])
 
 
+def py_prefix():
+    """打印给用户看的 Python 调用前缀 —— 全仓库统一成 `py -3 -m`。
+
+    为什么不打印裸 `pip` / `genshen-skin`：那要求 pip 的 Scripts 目录在 PATH 里，
+    而"命令找不到"恰恰是用户最常卡住的地方。`py -3 -m pip` / `py -3 -m genshen_skins`
+    只依赖 Windows 自带的 py 启动器，与 PATH 无关。
+    macOS / Linux 没有 py 启动器，用 `python3 -m`。
+    """
+    return "py -3 -m" if os.name == "nt" else "python3 -m"
+
+
 def pip_install_args(name, python=None):
     """构造 `pip install -i <镜像>` 的参数；official 时返回空列表。"""
     m = pip_index(name)
