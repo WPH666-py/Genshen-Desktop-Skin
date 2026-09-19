@@ -142,7 +142,7 @@ py -3 -m genshen_skins deepking furina --out D:\deepking\furina
 ```bash
 py -3 -m genshen_skins sync --all                  # 克隆 29 个仓库到 ~/.genshen-skins
 py -3 -m genshen_skins vendor --out D:\GenshenAll  # 克隆到指定目录
-python scripts/vendor_all.py --out D:\GenshenAll   # 等价脚本（带 .git 可 git pull 更新）
+py -3 scripts/vendor_all.py --out D:\GenshenAll   # 等价脚本（带 .git 可 git pull 更新）
 ```
 
 ---

@@ -11,7 +11,7 @@
 
 ## 第 0 步：先确认用户想要哪一套
 
-- 用户点名了角色（「丝柯克」「芙宁娜」「雷神」「草神」…）→ 用 `genshen-skin show <关键词>` 确认，再装那一套。
+- 用户点名了角色（「丝柯克」「芙宁娜」「雷神」「草神」…）→ 用 `py -3 -m genshen_skins show <关键词>` 确认，再装那一套。
 - 用户说「全部 / 都装上」→ 见下方「全部安装」。
 - 不确定是哪一套 → 读 `catalog.json` 的 `skins[].char` / `name` / `aliases` 匹配；
   匹配不到就列几个候选问用户。
@@ -34,128 +34,79 @@
 安装器会自己识别本机环境（有哪些 IDE、有没有 DSH、屏幕多大、要不要走代理），
 把皮肤装到所有该装的地方。
 
-```bash
-# 1) 装安装器（国内网络用镜像，见下）
-pip install genshen-desktop-skin
-
-# 2) 看有哪些皮肤
-genshen-skin list
-
-# 3) 装某一套（自动：生成并设置壁纸 + 给检测到的 IDE 装扩展 + 启动桌宠）
-genshen-skin install skirk
-
-# 其它常用
-genshen-skin wallpaper furina 2      # 只换壁纸（第 2 张）
-genshen-skin pet keqing              # 只要桌面桌宠
-genshen-skin ide furina              # 只装 VSCode/Trae/CodeX 扩展
-genshen-skin dsh furina              # 只要 DSH 动态插件载荷
-genshen-skin export furina --out D:\skins   # 导出壁纸给 PyCharm 当背景图
-genshen-skin env                     # 看本机识别到的环境
-genshen-skin doctor                  # 网络/代理/镜像体检
-```
-
-**国内网络装不上 pip 包时**（pypi.org 连不上 / TLS 被中断），改用镜像 —— 两个都试一下：
-
-```bash
-pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin   # 清华 TUNA
-pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin    # 中科大 USTC
-```
-
-`genshen-skin doctor` 会实测 pypi.org / 清华 / 中科大哪个通，并直接给出可用的安装命令。
-
-### ⚠️ 先解决一个必踩的坑：`genshen-skin` 找不到命令
-
-pip 装完通常会打印一句警告：`...\Scripts' which is not on PATH`。
-此时直接敲 `genshen-skin` 会报 `无法将"genshen-skin"项识别为 cmdlet…`（Windows）
-或 `command not found`（macOS / Linux）。**这不是安装失败** —— 先确认：
-
-```bash
-pip show genshen-desktop-skin        # 能显示版本就说明装好了
-```
-
-**不要**去猜 `python -m genshen-skin` —— 模块名是**下划线**，用连字符必然报
-`No module named genshen-skin`。正确写法是：
-
-> ⚠️ **以上两行作废（此处曾写错，保留原文仅为留痕）。**
-> `python -m` 是按**字符串**在 `sys.path` 里找模块（`runpy` + `PathFinder`），
-> **不要求名字是合法标识符**，因此带连字符的入口是可行的 —— 实测：
-> `python -m genshen-skin` ✔、`importlib.import_module("genshen-skin")` ✔、
-> 只有 `import genshen-skin` 这种**语句**形式才 SyntaxError。
-> 1.0.5 起包里已发布 `genshen-skin.py` 与 `genshen_skin.py` 两个顶层入口，
-> 所以下面五种写法**完全等价**，随便挑：
->
-> | 写法 | 说明 |
-> |---|---|
-> | `genshen-skin list` | 控制台命令（PATH 配好后可用） |
-> | `gss list` | 命令短别名 |
-> | `python -m genshen-skin list` | 连字符入口 |
-> | `python -m genshen_skin list` | 下划线单数入口 |
-> | `python -m genshen_skins list` | 下划线复数（正式包） |
->
-> 若真报 `No module named`，先 `pip show genshen-desktop-skin` 确认包已装、
-> 且版本 ≥ 1.0.5（更早的版本没有连字符入口）。
-
-```bash
-python -m genshen_skins list          # ✔ 模块名 genshen_skins（下划线）
-py -3 -m genshen_skins list           # Windows 装了 py 启动器时
-python3 -m genshen_skins list         # macOS / Linux
-```
-
-`python -m genshen_skins` 与 `genshen-skin` **完全等价**，PATH 没配好时优先用它，
-本文档后面所有 `genshen-skin xxx` 都可以照此替换。
-
-三个名字别混，这是用户最常卡住的地方：
-
-| 用途 | 写法 |
-|---|---|
-| pip 安装 | `pip install genshen-desktop-skin` |
-| 模块调用 | `python -m genshen_skins` |
-| 命令调用 | `genshen-skin`（别名 `gss`） |
-
-要用真正的 `genshen-skin` 命令就把 pip 的 Scripts 目录加进 PATH（永久，需重开终端）：
+**统一调用格式：Windows 一律 `py -3 -m`，macOS / Linux 一律 `python3 -m`。**
+这个形式不依赖 pip 的 `Scripts` 目录在不在 `PATH` 里，所以不需要教用户配 PATH。
 
 ```powershell
-# Windows：路径按实际 Python 安装位置调整
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";$env:LOCALAPPDATA\Programs\Python\Python311\Scripts", "User")
+# 1) 装安装器（国内网络用镜像，见下）
+py -3 -m pip install genshen-desktop-skin
+
+# 2) 看有哪些皮肤
+py -3 -m genshen_skins list
+
+# 3) 装某一套（自动：生成并设置壁纸 + 给检测到的 IDE 装扩展 + 启动桌宠）
+py -3 -m genshen_skins install skirk
+
+# 其它常用
+py -3 -m genshen_skins wallpaper furina 2      # 只换壁纸（第 2 张）
+py -3 -m genshen_skins pet keqing              # 只要桌面桌宠
+py -3 -m genshen_skins ide furina              # 只装 VSCode/Trae/CodeX 扩展
+py -3 -m genshen_skins dsh furina              # 只要 DSH 动态插件载荷
+py -3 -m genshen_skins export furina --out D:\skins   # 导出壁纸给 PyCharm 当背景图
+py -3 -m genshen_skins env                     # 看本机识别到的环境
+py -3 -m genshen_skins doctor                  # 网络/代理/镜像体检
 ```
 
-```bash
-# macOS / Linux：一般是 ~/.local/bin 或 Python 前缀下的 bin
-export PATH="$HOME/.local/bin:$PATH"
+**国内网络装不上 pip 包时**（pypi.org 连不上 / TLS 被中断），改用镜像 —— 三个都试一下：
+
+```powershell
+py -3 -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple genshen-desktop-skin   # 清华 TUNA
+py -3 -m pip install -i https://mirrors.ustc.edu.cn/pypi/simple genshen-desktop-skin    # 中科大 USTC
+py -3 -m pip install -i https://mirrors.aliyun.com/pypi/simple genshen-desktop-skin     # 阿里云
 ```
 
-找不到 Scripts 目录在哪时：
+`py -3 -m genshen_skins doctor` 会实测 pypi.org / 清华 / 中科大 / 阿里哪个通，
+并直接给出可用的安装命令。
 
-```bash
-python -c "import sys,os; print(os.path.join(sys.base_prefix,'Scripts'))"   # Windows
-python -c "import sys,os; print(os.path.join(sys.base_prefix,'bin'))"       # macOS/Linux
+
+
+### 调用格式：Windows 统一 `py -3 -m`，macOS / Linux 统一 `python3 -m`
+
+```powershell
+py -3 -m genshen_skins list          # Windows
+python3 -m genshen_skins list        # macOS / Linux
 ```
 
-**没有 Python 时**先装 Python：
+**这个形式不依赖 pip 的 `Scripts` 目录在不在 `PATH` 里** —— 所以
+「无法将"genshen-skin"项识别为 cmdlet」「command not found」这类报错，
+改用上面的写法就没了，**不需要去配 PATH**。
 
-```bash
-winget install Python.Python.3.11     # Windows
+- `py -3` 挑的是本机**版本最高**的 Python，未必是装了包的那个
+  （症状：`No module named genshen_skins`）。先 `py -0p` 看全部版本，
+  再用 `py -3 -m pip show genshen-desktop-skin` 确认当前这个里有没有；
+  必要时指定版本，例如 `py -3.12 -m genshen_skins list`。
+- **不要**照着 `...\Programs\Python\Python3<版本>\Scripts` 这类**写死版本**的路径去配
+  `PATH` —— 那只在用户恰好也是那个版本时才成立（本项目踩过这个坑）。
+- 连字符入口（`genshen-skin.py` / `genshen_skin.py`）包内同样保留、也仍然可用，
+  但**文档统一只推 `genshen_skins`（下划线复数，正式包名）**一种。
+- 三个名字别混：pip 发行名 `genshen-desktop-skin` / 模块名 `genshen_skins` / 命令名 `genshen-skin`。
+
+
+
+**没有 Python 时**先装 Python —— **3.8 及以上任意版本都可以**（CI 覆盖 3.8~3.13）：
+
+```powershell
+winget install Python.Python.3.12     # Windows（3.8~3.13 任一版本都行）
 brew install python                   # macOS
 sudo apt install python3 python3-pil  # Ubuntu / Debian
 ```
 
-> ⚠️ **上面三条里的版本号只是举例，不是要求（保留原文仅为留痕）**：本项目
-> `requires-python = ">=3.8"`，**3.8 及以上任意版本都能用** —— CI 覆盖
-> 3.8 / 3.9 / 3.10 / 3.11 / 3.12 / 3.13 × Windows / macOS / Ubuntu 共 18 个组合。
->
-> 同理，本文档里那条把 `...\Programs\Python\Python311\Scripts` 直接写进 PATH 的命令
-> **只在用户恰好也装的 3.11 时才成立**；装 3.12 / 3.13 / conda / Store 版的用户照抄会
-> 「路径不存在」。版本无关的写法是**从解释器自身推导**（任何版本、任何安装位置都对）：
->
-> ```powershell
-> $s = python -c "import sys,os;print(os.path.dirname(sys.executable))"   # 该 python 的 Scripts 目录
-> [Environment]::SetEnvironmentVariable("Path", $env:Path + ";$s", "User")
-> ```
->
-> 还有一条多 Python 环境必踩的坑：**`py -3` 永远挑版本最高的那个 python**，未必是你
-> 装包的那一个（症状：`No module named genshen_skins`）。先 `py -0p` 列出本机全部版本，
-> 再用 `python -m pip show genshen-desktop-skin` 确认当前这个里到底有没有。
-> 一句话：**用哪个 python 装的，就用哪个 python 跑。**
+> 本项目一律用 `py -3 -m` 调用（Windows）/ `python3 -m`（macOS / Linux），
+> **不需要把 Scripts 目录加进 PATH，也不需要知道它在哪**。
+> 装了多个 Python 时先 `py -0p` 看全部版本 —— `py -3` 挑的是**版本最高**的那个，
+> 未必是你装包的那个；必要时指定版本，例如 `py -3.12 -m genshen_skins list`。
+
+
 
 ---
 
@@ -200,7 +151,7 @@ sudo apt install python3 python3-pil  # Ubuntu / Debian
 4. 告诉用户：页面右下角出现皮肤挂件，点击释放元素爆发（中文语音 + 特效），
    右键菜单含「切换壁纸」「一键卸载」。
 
-若主工具可用，`genshen-skin dsh <id>` 会一次做完并写出 `DEFINE.md` 操作单。
+若主工具可用，`py -3 -m genshen_skins dsh <id>` 会一次做完并写出 `DEFINE.md` 操作单。
 
 > DSH 动态插件是**进程内**的，DSH 重启后需要重新 define + run。
 
@@ -224,7 +175,7 @@ JetBrains 不支持 VSIX，走**背景图**：
 
 1. 下载该套的 `wallpapers`（`-web.jpg` 是优化过的网页图，直接当背景图足够）。
 2. 让用户在 `Settings → Appearance & Behavior → Background Image` 里选一张。
-3. 主工具可用时 `genshen-skin export <id> --out <目录>` 会按屏幕分辨率生成整屏壁纸
+3. 主工具可用时 `py -3 -m genshen_skins export <id> --out <目录>` 会按屏幕分辨率生成整屏壁纸
    （默认 `blur`：立绘完整 + 两侧模糊填充，无黑边）。
 
 ### B4. claude-code / kimi-code / CodeX CLI / 任意 Windows 桌面（桌宠）
@@ -242,20 +193,20 @@ JetBrains 不支持 VSIX，走**背景图**：
    右键菜单含「切换壁纸」「开机自启」「一键卸载」。
 
 > `caps.desktop` 为 `false` 的皮肤（目前只有刻晴）仓库里没有桌宠脚本。
-> 主工具可用时 `genshen-skin pet <id>` 会用**内置通用桌宠**（读 `pet.json`）补上，效果对等。
+> 主工具可用时 `py -3 -m genshen_skins pet <id>` 会用**内置通用桌宠**（读 `pet.json`）补上，效果对等。
 
 ### B5. DeepKing
 
 下载 `paths.skin_json` + `paths.deepking_css` + 一张立绘，即 DeepKing 皮肤规范包
-（配色变量 + 立绘）。主工具可用时 `genshen-skin deepking <id>` 会导出到本地目录。
+（配色变量 + 立绘）。主工具可用时 `py -3 -m genshen_skins deepking <id>` 会导出到本地目录。
 
 ---
 
 ## 全部安装
 
 ```bash
-genshen-skin sync --all                      # 克隆 29 个仓库到 ~/.genshen-skins
-genshen-skin vendor --out D:\GenshenAll      # 把 29 个仓库全部落地到指定目录
+py -3 -m genshen_skins sync --all                      # 克隆 29 个仓库到 ~/.genshen-skins
+py -3 -m genshen_skins vendor --out D:\GenshenAll      # 把 29 个仓库全部落地到指定目录
 ```
 
 29 套逐套跑 `install` 会反复改系统壁纸，通常没必要；「都装上」一般指克隆 + 装扩展。
@@ -279,11 +230,11 @@ genshen-skin vendor --out D:\GenshenAll      # 把 29 个仓库全部落地到�
 - **桌宠启动后立刻消失**：宿主（AI Agent 的一次命令执行、部分 IDE 终端）会给子进程建
   Job 对象并在结束时回收整棵进程树。主工具通过 `explorer.exe` 打开 `.bat` 启动以脱离它；
   手动启动时用上面的 `start ""` 形式。
-- **桌宠看不到**：先 `genshen-skin pet <角色>` 看状态；内置通用桌宠有"兜底夹取"，
+- **桌宠看不到**：先 `py -3 -m genshen_skins pet <角色>` 看状态；内置通用桌宠有"兜底夹取"，
   会把窗口夹回主屏可见区域。
 - **非 Windows 环境**：桌宠仅支持 Windows；DSH 插件、VSCode 扩展、壁纸合成与设置
   （macOS 走 AppleScript，Linux 走 gsettings/xfconf/feh/nitrogen）跨平台可用。
-- **卸载**：`genshen-skin uninstall <id>`（清扩展 + 桌宠 + 自启 + 本地副本）；
+- **卸载**：`py -3 -m genshen_skins uninstall <id>`（清扩展 + 桌宠 + 自启 + 本地副本）；
   DSH 侧用皮肤右键菜单「一键卸载」或 `cordis_undefine <pluginId>`。
 
 ## 素材版权

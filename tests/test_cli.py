@@ -471,14 +471,19 @@ class TestInvocationNames(unittest.TestCase):
                 any(m in w for m in self.RETRACTION_MARKS for w in window),
                 "AGENTS.md 第 %d 行有错误说法却没有作废标记：%s" % (i + 1, line.strip()))
 
-    def test_agents_md_documents_all_equivalent_forms(self):
-        """更正之后，五种等价写法必须都在 AGENTS.md 里写明。"""
+    def test_agents_md_documents_the_single_invocation_form(self):
+        """文档只推一种调用写法：Windows `py -3 -m genshen_skins`，其他平台 `python3 -m`。
+
+        旧契约是「五种等价写法都要在 AGENTS.md 里写明」，现已作废 ——
+        罗列多种写法只让用户挑花眼，而且每一种都得配一段 PATH 排错。
+        现在统一成 py -3 -m：不依赖 Scripts 在不在 PATH，也就没有那类报错。
+        """
         with open(os.path.join(ROOT, "AGENTS.md"), encoding="utf-8") as f:
             text = f.read()
-        for form in ("genshen-skin list", "gss list",
-                     "python -m genshen-skin", "python -m genshen_skin",
-                     "python -m genshen_skins"):
-            self.assertIn(form, text, "AGENTS.md 没写等价写法 %r" % form)
+        self.assertIn("py -3 -m genshen_skins", text, "AGENTS.md 没写统一调用写法")
+        self.assertIn("python3 -m", text, "AGENTS.md 没写 macOS / Linux 的等价写法")
+        self.assertNotIn("五种写法", text, "AGENTS.md 还在宣传『五种等价写法』")
+        self.assertNotIn("gss list", text, "AGENTS.md 还在宣传 gss 短别名")
 
     def test_docs_document_the_path_fallback(self):
         """PATH 踩坑的说明必须留在文档里 —— 用户就是这么被绊住的。"""
