@@ -6,8 +6,8 @@
   "homepage": "https://github.com/WPH666-py/Genshen-Desktop-Skin",
   "pypi": "genshen-desktop-skin",
   "cli": "genshen-skin",
-  "count": 30,
-  "generated_at": "2026-09-23T02:14:15Z",
+  "count": 31,
+  "generated_at": "2026-09-23T02:53:03Z",
   "targets": {
     "dsh": "DeepSeek Harness 动态插件（cordis_define + cordis_run）",
     "vscode": "VSCode / Trae / CodeX / Cursor / Windsurf / VSCodium（VSIX 扩展）",
@@ -1958,6 +1958,81 @@
         ],
         "show": "noelleSkin.show",
         "uninstall": "noelleSkin.uninstall"
+      }
+    },
+    {
+      "id": "eneffa",
+      "no": 31,
+      "repo": "Genshen-Eneffa-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Eneffa-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Eneffa-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Eneffa-Skin.git",
+      "char": "伊涅芙",
+      "charEn": "Eneffa",
+      "element": "冰",
+      "aliases": [
+        "eneffa",
+        "yinefu",
+        "霜蓝鎏金",
+        "机械女仆",
+        "剑势"
+      ],
+      "name": "伊涅芙 · 霜蓝鎏金",
+      "nameEn": "Eneffa · Frost Blue",
+      "accent": "#3f6fa8",
+      "tagline": "霜蓝与鎏金：冰蓝发 × 白金机械甲 × 深蓝披风",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-eneffa-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/伊涅芙皮肤.ps1",
+        "desktop_bat": "desktop/启动-伊涅芙皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/wall1-web.jpg",
+        "dsh-plugin/素材/wall2-web.jpg",
+        "dsh-plugin/素材/wall3-web.jpg"
+      ],
+      "voices": [],
+      "ext": {
+        "id": "wp666.genshen-eneffa-skin",
+        "displayName": "原神伊涅芙动态皮肤",
+        "version": "1.0.0",
+        "commands": [
+          "eneffaSkin.openGallery",
+          "eneffaSkin.set1",
+          "eneffaSkin.set2",
+          "eneffaSkin.set3",
+          "eneffaSkin.setCard",
+          "eneffaSkin.setCover",
+          "eneffaSkin.setShowall",
+          "eneffaSkin.setRandom",
+          "eneffaSkin.openSwitcher",
+          "eneffaSkin.startPet",
+          "eneffaSkin.generateAll",
+          "eneffaSkin.showInfo",
+          "eneffaSkin.show",
+          "eneffaSkin.uninstall"
+        ],
+        "show": "eneffaSkin.show",
+        "uninstall": "eneffaSkin.uninstall"
       }
     }
   ]

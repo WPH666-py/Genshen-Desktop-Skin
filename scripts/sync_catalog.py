@@ -73,6 +73,7 @@ SEED = [
     ("sandrone",  "Sandrone",  "桑多涅",     "Sandrone",      "", ["sandrone", "sangduonie", "事象数式", "万理证毕", "木偶"]),
     ("clorinde",  "Clorinde",  "克洛琳德",   "Clorinde",      "雷", ["clorinde", "keluolinde", "秉烛剔星月", "决斗代理人"]),
     ("noelle",    "Noelle",    "诺艾尔",     "Noelle",        "岩", ["noelle", "nuoaier", "大扫除", "该打扫战场了", "西风骑士团", "女仆", "骑士"]),
+    ("eneffa",    "Eneffa",    "伊涅芙",     "Eneffa",        "冰", ["eneffa", "yinefu", "霜蓝鎏金", "机械女仆", "剑势"], "Genshen-Eneffa-Skin"),
 ]
 
 
@@ -178,8 +179,9 @@ def find_one(paths, predicate):
 
 
 def build_skin(entry, index):
-    sid, repo_name, char, char_en, element, aliases = entry
-    repo = "Genshen-%s-Skin" % repo_name
+    # 第 7 项可选：直接指定仓库名（默认按 Genshen-<Name>-Skin 推导）
+    sid, repo_name, char, char_en, element, aliases = entry[:6]
+    repo = entry[6] if len(entry) > 6 else "Genshen-%s-Skin" % repo_name
     url = "https://github.com/%s/%s" % (OWNER, repo)
     raw = "https://raw.githubusercontent.com/%s/%s/%s" % (OWNER, repo, BRANCH)
 
