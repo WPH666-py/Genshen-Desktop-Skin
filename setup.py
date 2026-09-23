@@ -8,7 +8,7 @@ from setuptools import setup
 setup(
     name="genshen-desktop-skin",
     version="1.0.9",
-    description="原神桌面皮肤集合（29 套）：壁纸 / IDE 扩展 / DSH 插件 / Windows 桌宠 一键安装",
+    description="原神桌面皮肤集合（30 套）：壁纸 / IDE 扩展 / DSH 插件 / Windows 桌宠 一键安装",
     author="WPH666-py",
     url="https://github.com/WPH666-py/Genshen-Desktop-Skin",
     license="MIT",

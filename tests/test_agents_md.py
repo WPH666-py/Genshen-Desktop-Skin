@@ -81,7 +81,7 @@ class TestAgentsMd(unittest.TestCase):
         self.assertIn("cordis_undefine", self.text)
 
     def test_lists_all_29_characters(self):
-        """角色关键词对照表必须覆盖全部 29 套，否则 AI 会漏掉一些皮肤。"""
+        """角色关键词对照表必须覆盖全部 30 套，否则 AI 会漏掉一些皮肤。"""
         from genshen_skins import catalog as c
         missing = [s["char"] for s in c.load_catalog()["skins"] if s["char"] not in self.text]
         self.assertEqual(missing, [], "AGENTS.md 的角色对照表漏了: %s" % ", ".join(missing))

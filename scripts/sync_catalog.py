@@ -19,6 +19,7 @@ import argparse
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -71,6 +72,7 @@ SEED = [
     ("mualani",   "Mualani",   "玛拉妮",     "Mualani",       "水", ["mualani", "malani", "爆瀑飞弹", "玛拉妮"]),
     ("sandrone",  "Sandrone",  "桑多涅",     "Sandrone",      "", ["sandrone", "sangduonie", "事象数式", "万理证毕", "木偶"]),
     ("clorinde",  "Clorinde",  "克洛琳德",   "Clorinde",      "雷", ["clorinde", "keluolinde", "秉烛剔星月", "决斗代理人"]),
+    ("noelle",    "Noelle",    "诺艾尔",     "Noelle",        "岩", ["noelle", "nuoaier", "大扫除", "该打扫战场了", "西风骑士团", "女仆", "骑士"]),
 ]
 
 
@@ -95,15 +97,70 @@ def get(url, raw=False, timeout=30):
     return json.loads(data.decode("utf-8"))
 
 
-def get_optional(url):
+def _via_api(url):
+    """raw.githubusercontent.com 不可达时, 改用 GitHub Contents API 取同一文件。
+
+    raw 域名会整段返回 "SSL: UNEXPECTED_EOF_WHILE_READING"（不是 404），
+    而 api.github.com 一直可用。两者内容一致, 只是传输方式不同。
+    """
+    import base64
+    import re as _re
+    m = _re.match(r"https://raw\.githubusercontent\.com/([^/]+)/([^/]+)/([^/]+)/(.+)$", url)
+    if not m:
+        return None
+    owner, repo, _branch, path = m.groups()
+    data = get("%s/repos/%s/%s/contents/%s" % (API, owner, repo, path))
+    if not isinstance(data, dict) or "content" not in data:
+        return None
     try:
-        return get(url)
-    except urllib.error.HTTPError as e:
-        if e.code == 404:
-            return None
-        raise
+        text = base64.b64decode(data["content"]).decode("utf-8")
     except Exception:
         return None
+    return json.loads(text)
+
+
+def get_optional(url, tries=4):
+    """GET，404 返回 None。
+
+    raw.githubusercontent.com 会偶发超时/连接重置，甚至整段不可用。若直接吞掉
+    这类错误，skin.json 与 package.json 就会读不到，导致 name/accent/tagline/ext
+    静默退化成默认值（整张目录看起来"成功"、实则丢字段）。
+
+    因此分两层兜底：
+      1. 对瞬时网络错误退避重试；
+      2. 仍失败则改走 GitHub Contents API 取同一文件。
+    只有真正的 404 才返回 None。
+    """
+    last = None
+    for attempt in range(tries):
+        try:
+            return get(url)
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                return None
+            last = e
+        except Exception as e:
+            last = e
+        if attempt < tries - 1:
+            time.sleep(1.0 * (attempt + 1))
+
+    if url.startswith("https://raw.githubusercontent.com/"):
+        for attempt in range(3):
+            try:
+                return _via_api(url)
+            except urllib.error.HTTPError as e:
+                if e.code == 404:
+                    return None
+                last = e
+            except Exception as e:
+                last = e
+            time.sleep(1.5 * (attempt + 1))
+        sys.stderr.write("[sync_catalog] API 兜底也失败: %s -> %s\n" % (url, last))
+        return None
+
+    sys.stderr.write("[sync_catalog] 读取失败(已重试 %d 次): %s -> %s\n"
+                     % (tries, url, last))
+    return None
 
 
 def pick(paths, *candidates):

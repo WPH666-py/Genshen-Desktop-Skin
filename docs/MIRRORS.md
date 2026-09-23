@@ -67,7 +67,7 @@ $env:GENSHEN_MIRROR = "tuna"
 
 ## 二、GitHub 加速：用于 clone 皮肤仓库 / 下载 raw 文件
 
-29 套皮肤仓库都在 GitHub 上。国内直连 `raw.githubusercontent.com` 经常超时，
+30 套皮肤仓库都在 GitHub 上。国内直连 `raw.githubusercontent.com` 经常超时，
 `genshen-skin` 会**自动按顺序尝试**下列通道，第一个成功的会被记住，后续优先复用：
 
 | 通道 | 说明 | 支持 |

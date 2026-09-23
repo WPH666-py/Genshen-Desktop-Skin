@@ -3,7 +3,7 @@
 用户把 **https://github.com/WPH666-py/Genshen-Desktop-Skin** 交给你，并说「装原神皮肤 / 桌面壁纸 /
 换壁纸 / 装个桌宠」时，按本文件执行。
 
-本仓库是 **29 套原神角色动态皮肤的集合**：机器可读目录 `catalog.json` + 跨平台安装器
+本仓库是 **30 套原神角色动态皮肤的集合**：机器可读目录 `catalog.json` + 跨平台安装器
 （PyPI 包 `genshen-desktop-skin`，命令 `genshen-skin`）。
 每套皮肤本身是一个独立仓库，本仓库负责「一套入口、按环境自动装到对的地方」。
 
@@ -15,14 +15,14 @@
 - 用户说「全部 / 都装上」→ 见下方「全部安装」。
 - 不确定是哪一套 → 读 `catalog.json` 的 `skins[].char` / `name` / `aliases` 匹配；
   匹配不到就列几个候选问用户。
-- **不要**在没有确认的情况下给 29 套全部换壁纸（那是 29 次系统壁纸切换）。
+- **不要**在没有确认的情况下给 30 套全部换壁纸（那是 29 次系统壁纸切换）。
 
 角色关键词对照（部分）：丝柯克=skirk、芙宁娜=水神=furina、刻晴=keqing、胡桃=hutao、
 心海=kokomi、绫华=神里=ayaka、宵宫=yoimiya、荧=旅行者=lumine、申鹤=shenhe、优菈=eula、
 砂糖=sucrose、尼可=nicole、芭芭拉=barbara、柯莱=collei、妮露=nilou、纳西妲=草神=nahida、
 雷电将军=雷神=影=shogun、安柏=amber=ambor、夜兰=yelan、兹白=zibai、甘雨=ganyu、
 哥伦比娅=columbina、莉奈娅=linnea、爱可菲=escoffier、娜维娅=navia、玛拉妮=mualani、
-桑多涅=sandrone、克洛琳德=clorinde、茜特拉莉=citlali。
+桑多涅=sandrone、克洛琳德=clorinde、茜特拉莉=citlali、诺艾尔=noelle=女仆=西风骑士团。
 
 （全名与简称都能命中：「珊瑚宫心海」与「心海」、「神里绫华」与「绫华」「神里」，
 检索不区分大小写，也可以直接用目录序号，例如「第 7 套」。）
@@ -205,11 +205,11 @@ JetBrains 不支持 VSIX，走**背景图**：
 ## 全部安装
 
 ```bash
-py -3 -m genshen_skins sync --all                      # 克隆 29 个仓库到 ~/.genshen-skins
-py -3 -m genshen_skins vendor --out D:\GenshenAll      # 把 29 个仓库全部落地到指定目录
+py -3 -m genshen_skins sync --all                      # 克隆 30 个仓库到 ~/.genshen-skins
+py -3 -m genshen_skins vendor --out D:\GenshenAll      # 把 30 个仓库全部落地到指定目录
 ```
 
-29 套逐套跑 `install` 会反复改系统壁纸，通常没必要；「都装上」一般指克隆 + 装扩展。
+30 套逐套跑 `install` 会反复改系统壁纸，通常没必要；「都装上」一般指克隆 + 装扩展。
 
 ---
 

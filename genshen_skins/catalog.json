@@ -6,8 +6,8 @@
   "homepage": "https://github.com/WPH666-py/Genshen-Desktop-Skin",
   "pypi": "genshen-desktop-skin",
   "cli": "genshen-skin",
-  "count": 29,
-  "generated_at": "2026-09-16T01:05:15Z",
+  "count": 30,
+  "generated_at": "2026-09-23T02:14:15Z",
   "targets": {
     "dsh": "DeepSeek Harness 动态插件（cordis_define + cordis_run）",
     "vscode": "VSCode / Trae / CodeX / Cursor / Windsurf / VSCodium（VSIX 扩展）",
@@ -1891,6 +1891,73 @@
         ],
         "show": "clorindeSkin.show",
         "uninstall": "clorindeSkin.uninstall"
+      }
+    },
+    {
+      "id": "noelle",
+      "no": 30,
+      "repo": "Genshen-Noelle-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Noelle-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Noelle-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Noelle-Skin.git",
+      "char": "诺艾尔",
+      "charEn": "Noelle",
+      "element": "岩",
+      "aliases": [
+        "noelle",
+        "nuoaier",
+        "大扫除",
+        "该打扫战场了",
+        "西风骑士团",
+        "女仆",
+        "骑士"
+      ],
+      "name": "诺艾尔 · 大扫除",
+      "nameEn": "Noelle · Sweeping Time",
+      "accent": "#c94060",
+      "tagline": "大扫除：蔷薇粉白与骑士银，暗色为玫瑰夜红",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-noelle-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/诺艾尔皮肤.ps1",
+        "desktop_bat": "desktop/启动-诺艾尔皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/诺艾尔-web.jpg",
+        "dsh-plugin/素材/诺艾尔-壁纸2-web.jpg",
+        "dsh-plugin/素材/诺艾尔-壁纸3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-noelle-skin",
+        "displayName": "诺艾尔动态皮肤（原神）",
+        "version": "1.0.0",
+        "commands": [
+          "noelleSkin.show",
+          "noelleSkin.uninstall"
+        ],
+        "show": "noelleSkin.show",
+        "uninstall": "noelleSkin.uninstall"
       }
     }
   ]
