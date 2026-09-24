@@ -76,6 +76,7 @@ SEED = [
     ("eneffa",    "Eneffa",    "伊涅芙",     "Eneffa",        "冰", ["eneffa", "yinefu", "霜蓝鎏金", "机械女仆", "剑势"], "Genshen-Eneffa-Skin"),
     ("varisha",   "Varisha",   "瓦蕾莎",     "Varisha",       "冰", ["varisha", "valeisha", "甜甜花", "甜甜花轰击", "角饰"], "Genshen-Varisha-Skin"),
     ("odette",    "Odette",    "奥黛塔",     "Odette",        "冰", ["odette", "aodaita", "霜羽", "霜羽圆舞", "长春花"], "Genshen-Odette-Skin"),
+    ("vodyanitsa", "Vodyanitsa", "沃雅妮莎",  "Vodyanitsa",    "水", ["vodyanitsa", "woyanisha", "清露", "清露涟漪", "水光", "白花"], "Genshen-Vodyanitsa-Skin"),
 ]
 
 

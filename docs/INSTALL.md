@@ -1,6 +1,6 @@
 # INSTALL.md — 分环境安装说明与排错
 
-33 套皮肤，同一份素材，装到不同环境。先看「最快路径」，遇到问题再往下查。
+34 套皮肤，同一份素材，装到不同环境。先看「最快路径」，遇到问题再往下查。
 
 ---
 
@@ -140,7 +140,7 @@ py -3 -m genshen_skins deepking furina --out D:\deepking\furina
 ## 6. 全部落地到本地（离线收藏 / 自建镜像）
 
 ```bash
-py -3 -m genshen_skins sync --all                  # 克隆 33 个仓库到 ~/.genshen-skins
+py -3 -m genshen_skins sync --all                  # 克隆 34 个仓库到 ~/.genshen-skins
 py -3 -m genshen_skins vendor --out D:\GenshenAll  # 克隆到指定目录
 py -3 scripts/vendor_all.py --out D:\GenshenAll   # 等价脚本（带 .git 可 git pull 更新）
 ```

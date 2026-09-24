@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""vendor_all.py —— 把 33 个皮肤仓库全部落地到本地。
+"""vendor_all.py —— 把 34 个皮肤仓库全部落地到本地。
 
 适合：离线收藏、自建镜像、想一次性拥有全部素材。
 
@@ -81,7 +81,7 @@ def main(argv=None):
         except Exception:
             pass
 
-    ap = argparse.ArgumentParser(description="把 33 个原神皮肤仓库全部克隆到本地")
+    ap = argparse.ArgumentParser(description="把 34 个原神皮肤仓库全部克隆到本地")
     ap.add_argument("--out", required=True, help="目标目录")
     ap.add_argument("--force", action="store_true", help="已存在也重新拉取")
     ap.add_argument("--tar", action="store_true", help="每个仓库另外打包成 tar.gz")

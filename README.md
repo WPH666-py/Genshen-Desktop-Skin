@@ -1,6 +1,6 @@
 # 原神桌面皮肤集合 · Genshen Desktop Skin
 
-**33 套原神角色动态皮肤，一个入口，按环境自动安装。**
+**34 套原神角色动态皮肤，一个入口，按环境自动安装。**
 
 把本仓库地址交给任意一个有本机权限的 AI 助手（DeepSeek Harness / claude-code / kimi-code /
 CodeX / Trae / Cursor 等），说一句「装丝柯克皮肤」，AI 就会读
@@ -24,7 +24,7 @@ PyCharm / IntelliJ / WebStorm · claude-code · kimi-code · DeepKing · Windows
 ```powershell
 py -3 -m pip install genshen-desktop-skin     # 国内网络见下方「镜像」
 
-py -3 -m genshen_skins list                   # 看全部 33 套
+py -3 -m genshen_skins list                   # 看全部 34 套
 py -3 -m genshen_skins install furina         # 一键：壁纸 + IDE 扩展 + 桌宠
 py -3 -m genshen_skins wallpaper furina 2     # 只换壁纸（第 2 张）
 py -3 -m genshen_skins pet keqing             # 只要桌面桌宠
@@ -78,7 +78,7 @@ python3 -m genshen_skins list        # macOS / Linux
 
 ### ② 给 AI 一句话
 
-见顶部示例。AI 读取 `catalog.json`（33 套的能力矩阵）与 `AGENTS.md`（分环境安装指引），
+见顶部示例。AI 读取 `catalog.json`（34 套的能力矩阵）与 `AGENTS.md`（分环境安装指引），
 不需要你懂任何命令。
 
 ### ③ 手动克隆
@@ -131,7 +131,7 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 
 | 子命令 | 作用 |
 |---|---|
-| `list` | 列出 33 套皮肤与各自可用环境 |
+| `list` | 列出 34 套皮肤与各自可用环境 |
 | `show <角色>` | 查看某套的详情、壁纸、安装方式 |
 | `install <角色>` | 一键安装（壁纸 + 扩展 + 桌宠） |
 | `wallpaper <角色> [1\|2\|3\|random]` | 切换桌面壁纸 |
@@ -140,8 +140,8 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 | `ide <角色>` | 装 VSIX 扩展；`--list` 看检测到的编辑器，`--uninstall` 卸载 |
 | `dsh <角色>` | 生成 DSH 动态插件载荷 + 操作单 |
 | `deepking <角色>` | 导出 DeepKing 皮肤规范包 |
-| `sync --all` | 把 33 个仓库克隆到 `~/.genshen-skins` |
-| `vendor --out <目录>` | 把 33 个仓库全部落地到指定目录（离线收藏） |
+| `sync --all` | 把 34 个仓库克隆到 `~/.genshen-skins` |
+| `vendor --out <目录>` | 把 34 个仓库全部落地到指定目录（离线收藏） |
 | `env` / `doctor` / `paths` | 环境 / 体检 / 本地目录 |
 | `mirror [--set tuna\|ustc\|aliyun\|tencent]` | 查看 / 设置镜像 |
 | `uninstall <角色>` | 卸载（扩展 + 桌宠 + 自启 + 本地副本） |
@@ -155,7 +155,7 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 
 ---
 
-## 皮肤目录（33 套）
+## 皮肤目录（34 套）
 
 | # | ID | 皮肤 | 角色 | 元素 | 主题色 | 壁纸 | DSH | IDE扩展 | 桌宠 | DeepKing | 仓库 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
@@ -192,6 +192,7 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 | 31 | `eneffa` | 伊涅芙 · 霜蓝鎏金 | 伊涅芙 | 冰 | `#3f6fa8` | 3 | ✅ | ✅ | ✅ | ✅ | [Genshen-Eneffa-Skin](https://github.com/WPH666-py/Genshen-Eneffa-Skin) |
 | 32 | `varisha` | 瓦蕾莎 · 甜甜花 | 瓦蕾莎 | 冰 | `#e8657f` | 3 | ✅ | ✅ | ✅ | ✅ | [Genshen-Varisha-Skin](https://github.com/WPH666-py/Genshen-Varisha-Skin) |
 | 33 | `odette` | 奥黛塔 · 霜羽 | 奥黛塔 | 冰 | `#6a7bba` | 3 | ✅ | ✅ | ✅ | ✅ | [Genshen-Odette-Skin](https://github.com/WPH666-py/Genshen-Odette-Skin) |
+| 34 | `vodyanitsa` | 沃雅妮莎 · 清露 | 沃雅妮莎 | 水 | `#5a89b0` | 3 | ✅ | ✅ | ✅ | ✅ | [Genshen-Vodyanitsa-Skin](https://github.com/WPH666-py/Genshen-Vodyanitsa-Skin) |
 
 `壁纸` 列是该套可切换的壁纸张数；`—` 表示该皮肤仓库暂未提供对应形态
 （目前只有刻晴缺 VSIX 与桌宠脚本 —— `py -3 -m genshen_skins pet keqing` 会用内置通用桌宠补上）。
@@ -208,7 +209,7 @@ GitHub 加速（克隆皮肤仓库 / 下载 raw 文件时自动依次尝试，�
 Genshen-Desktop-Skin/
 ├── AGENTS.md              ← AI 助手自动安装指引（核心）
 ├── README.md              ← 本文件
-├── catalog.json           ← 33 套皮肤机器可读目录（能力矩阵/路径/扩展ID/壁纸）
+├── catalog.json           ← 34 套皮肤机器可读目录（能力矩阵/路径/扩展ID/壁纸）
 ├── pyproject.toml         ← PyPI 包定义
 ├── genshen_skins/         ← 安装器 Python 包
 │   ├── cli.py             git/genshen-skin 命令行
@@ -224,7 +225,7 @@ Genshen-Desktop-Skin/
 │       └── genshen-pet.ps1   内置通用桌宠（给没有自带桌宠的皮肤用）
 ├── scripts/
 │   ├── sync_catalog.py    从 GitHub 重新生成 catalog.json
-│   └── vendor_all.py      把 33 个仓库全部落地到本地
+│   └── vendor_all.py      把 34 个仓库全部落地到本地
 └── docs/
     ├── INSTALL.md         分环境详细安装说明与排错
     └── MIRRORS.md         清华 / 中科大镜像说明

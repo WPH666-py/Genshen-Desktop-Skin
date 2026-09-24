@@ -52,7 +52,7 @@ jobs:
           head = z.read("genshen_skins/assets/genshen-pet.ps1")[:3]
           assert head == b"\xef\xbb\xbf", "桌宠脚本丢了 UTF-8 BOM"
           cat = json.loads(z.read("genshen_skins/catalog.json"))
-          assert len(cat["skins"]) == 33, "catalog 皮肤数不是 33"
+          assert len(cat["skins"]) == 34, "catalog 皮肤数不是 34"
           print("wheel 校验通过:", whl)
           PY
 

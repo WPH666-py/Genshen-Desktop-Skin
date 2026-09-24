@@ -6,8 +6,8 @@
   "homepage": "https://github.com/WPH666-py/Genshen-Desktop-Skin",
   "pypi": "genshen-desktop-skin",
   "cli": "genshen-skin",
-  "count": 33,
-  "generated_at": "2026-09-24T01:26:24Z",
+  "count": 34,
+  "generated_at": "2026-09-24T01:54:45Z",
   "targets": {
     "dsh": "DeepSeek Harness 动态插件（cordis_define + cordis_run）",
     "vscode": "VSCode / Trae / CodeX / Cursor / Windsurf / VSCodium（VSIX 扩展）",
@@ -2163,6 +2163,72 @@
         ],
         "show": "odetteSkin.show",
         "uninstall": "odetteSkin.uninstall"
+      }
+    },
+    {
+      "id": "vodyanitsa",
+      "no": 34,
+      "repo": "Genshen-Vodyanitsa-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Vodyanitsa-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Vodyanitsa-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Vodyanitsa-Skin.git",
+      "char": "沃雅妮莎",
+      "charEn": "Vodyanitsa",
+      "element": "水",
+      "aliases": [
+        "vodyanitsa",
+        "woyanisha",
+        "清露",
+        "清露涟漪",
+        "水光",
+        "白花"
+      ],
+      "name": "沃雅妮莎 · 清露",
+      "nameEn": "Vodyanitsa · Puredew",
+      "accent": "#5a89b0",
+      "tagline": "青碧与湖蓝：碧色长发 × 霜白礼裙 × 珍珠水光",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-vodyanitsa-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/沃雅妮莎皮肤.ps1",
+        "desktop_bat": "desktop/启动-沃雅妮莎皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/wall1-web.jpg",
+        "dsh-plugin/素材/wall2-web.jpg",
+        "dsh-plugin/素材/wall3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-vodyanitsa-skin",
+        "displayName": "原神沃雅妮莎动态皮肤",
+        "version": "1.0.0",
+        "commands": [
+          "vodyanitsaSkin.show",
+          "vodyanitsaSkin.uninstall"
+        ],
+        "show": "vodyanitsaSkin.show",
+        "uninstall": "vodyanitsaSkin.uninstall"
       }
     }
   ]

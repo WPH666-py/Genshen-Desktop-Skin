@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "genshen-desktop-skin"
 version = "1.0.9"
-description = "原神桌面皮肤集合（33 套）：壁纸 / VSCode·Trae·CodeX 扩展 / PyCharm 背景 / DSH 插件 / Windows 桌宠 一键安装"
+description = "原神桌面皮肤集合（34 套）：壁纸 / VSCode·Trae·CodeX 扩展 / PyCharm 背景 / DSH 插件 / Windows 桌宠 一键安装"
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "MIT" }

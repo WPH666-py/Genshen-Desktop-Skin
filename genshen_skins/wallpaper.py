@@ -128,28 +128,81 @@ def have_pillow():
         return False
 
 
+def _in_venv():
+    """venv / virtualenv / conda 环境里 `pip install --user` 会直接报错。
+
+    venv 与 virtualenv 靠 sys.prefix != sys.base_prefix 判定；conda 环境没有
+    base_prefix 差异，改看 CONDA_PREFIX 是否指向当前 sys.prefix。
+    """
+    try:
+        if sys.prefix != getattr(sys, "base_prefix", sys.prefix):
+            return True
+    except Exception:
+        pass
+    conda = os.environ.get("CONDA_PREFIX")
+    if conda:
+        try:
+            if os.path.normcase(os.path.abspath(conda)) == os.path.normcase(
+                    os.path.abspath(sys.prefix)):
+                return True
+        except Exception:
+            pass
+    # virtualenv（非 venv 模块）会留下这个标记文件
+    return os.path.exists(os.path.join(sys.prefix, "pyvenv.cfg"))
+
+
+def _pip_install(args):
+    """跑一次 pip；失败返回 False（不抛出，交由调用方换策略重试）。"""
+    try:
+        subprocess.check_call(args, env=proxy.env_with_proxy())
+        return True
+    except (subprocess.CalledProcessError, OSError):
+        return False
+
+
 def ensure_pillow(mirror_name=None, quiet=False):
-    """确保 Pillow 可用；缺失时 pip 安装（默认走清华源 + 代理）。"""
+    """确保 Pillow 可用；缺失时 pip 安装（默认走清华源 + 代理）。
+
+    安装策略按环境自适应，避免"看着装了其实没装"：
+      * venv / conda  → 不加 `--user`（加了必然失败）
+      * 系统 Python   → 优先 `--user`（不污染系统 site-packages）
+      * PEP 668 拦截  → 重试时补 `--break-system-packages`
+    """
     if have_pillow():
         return True
     mirror_name = mirror_name or os.environ.get("GENSHEN_MIRROR") or "tuna"
-    args = [sys.executable, "-m", "pip", "install", "--user"]
-    args += mirror.pip_install_args(mirror_name)
-    args += proxy.pip_args()
-    args += ["pillow"]
-    if not quiet:
-        print("[genshen] 未检测到 Pillow，正在安装：%s" % " ".join(args[2:]))
-    try:
-        subprocess.check_call(args, env=proxy.env_with_proxy())
-    except subprocess.CalledProcessError:
+    base = [sys.executable, "-m", "pip", "install"]
+    base += mirror.pip_install_args(mirror_name)
+    base += proxy.pip_args()
+
+    in_venv = _in_venv()
+    attempts = []
+    if in_venv:
+        attempts.append(("当前虚拟环境", base))
+    else:
+        attempts.append(("当前用户目录", base + ["--user"]))
+        attempts.append(("系统环境", base))
+    # 新版 Debian/Ubuntu 的 PEP 668 保护：显式放行
+    attempts.append(("系统环境（--break-system-packages）",
+                     base + ["--break-system-packages"]))
+
+    for label, args in attempts:
+        cmd = args + ["pillow"]
         if not quiet:
-            print("[genshen] Pillow 安装失败。请手动执行：\n"
-                  "  %s -m pip install -i %s pillow"
-                  % (sys.executable, mirror.pip_index(mirror_name)["index"]), file=sys.stderr)
-        return False
-    import importlib
-    importlib.invalidate_caches()
-    return have_pillow()
+            print("[genshen] 未检测到 Pillow，正在安装（%s）：%s"
+                  % (label, " ".join(cmd[2:])))
+        if _pip_install(cmd):
+            import importlib
+            importlib.invalidate_caches()
+            if have_pillow():
+                return True
+        if not quiet:
+            print("[genshen] 该方式未成功，换下一种…")
+    if not quiet:
+        print("[genshen] Pillow 安装失败。请手动执行：\n"
+              "  %s -m pip install -i %s pillow"
+              % (sys.executable, mirror.pip_index(mirror_name)["index"]), file=sys.stderr)
+    return False
 
 
 # ---------------------------------------------------------------------------

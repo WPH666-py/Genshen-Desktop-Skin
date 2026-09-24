@@ -53,7 +53,7 @@ class TestCliOffline(TempHomeMixin):
     def test_list(self):
         rc, out = run_cli("list")
         self.assertEqual(rc, 0)
-        self.assertIn("共 33 套", out)
+        self.assertIn("共 34 套", out)
         self.assertIn("skirk", out)
         self.assertIn("clorinde", out)
 
@@ -87,13 +87,13 @@ class TestCliOffline(TempHomeMixin):
         rc, out = run_cli("catalog", "--json")
         self.assertEqual(rc, 0)
         data = json.loads(out[out.index("{"):])
-        self.assertEqual(len(data["skins"]), 33)
+        self.assertEqual(len(data["skins"]), 34)
 
     def test_catalog_md(self):
         rc, out = run_cli("catalog", "--md")
         self.assertEqual(rc, 0)
         self.assertIn("| # | ID | 皮肤 |", out)
-        self.assertEqual(out.count("| [Genshen-"), 33)
+        self.assertEqual(out.count("| [Genshen-"), 34)
 
     def test_paths(self):
         rc, out = run_cli("paths")

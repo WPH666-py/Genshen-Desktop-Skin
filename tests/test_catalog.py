@@ -2,7 +2,7 @@
 """catalog.json 完整性测试。
 
 catalog.json 是整个集合的事实来源，AI 助手、CLI、README 都从它读数据。
-它由 `scripts/sync_catalog.py` 从 33 个皮肤仓库实测生成，所以这里重点检查
+它由 `scripts/sync_catalog.py` 从 34 个皮肤仓库实测生成，所以这里重点检查
 "生成结果是否自洽"：字段齐不齐、路径指向的文件在不在、能力标记有没有矛盾。
 
     python -m unittest discover -s tests -v
@@ -24,7 +24,7 @@ REQUIRED_PATH_KEYS = ("dsh_client", "dsh_host", "vsix", "desktop_ps1", "desktop_
                       "deepking_css", "skin_json")
 REQUIRED_CAPS = ("dsh", "desktop", "vscode", "deepking")
 
-EXPECTED_COUNT = 33
+EXPECTED_COUNT = 34
 OWNER = "WPH666-py"
 
 
