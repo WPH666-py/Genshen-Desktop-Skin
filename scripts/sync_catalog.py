@@ -74,6 +74,7 @@ SEED = [
     ("clorinde",  "Clorinde",  "克洛琳德",   "Clorinde",      "雷", ["clorinde", "keluolinde", "秉烛剔星月", "决斗代理人"]),
     ("noelle",    "Noelle",    "诺艾尔",     "Noelle",        "岩", ["noelle", "nuoaier", "大扫除", "该打扫战场了", "西风骑士团", "女仆", "骑士"]),
     ("eneffa",    "Eneffa",    "伊涅芙",     "Eneffa",        "冰", ["eneffa", "yinefu", "霜蓝鎏金", "机械女仆", "剑势"], "Genshen-Eneffa-Skin"),
+    ("varisha",   "Varisha",   "瓦蕾莎",     "Varisha",       "冰", ["varisha", "valeisha", "甜甜花", "甜甜花轰击", "角饰"], "Genshen-Varisha-Skin"),
 ]
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """genshen_skins.cli —— `genshen-skin` 命令行。
 
-    genshen-skin list                      列出 31 套皮肤
+    genshen-skin list                      列出 32 套皮肤
     genshen-skin show <角色>               某套详情与安装方式
     genshen-skin env                       体检本机环境（IDE / DSH / 代理 / 屏幕）
     genshen-skin install <角色>            一键安装（壁纸 + 扩展 + 桌宠）
@@ -12,7 +12,7 @@
     genshen-skin dsh <角色>                准备 DSH 动态插件载荷
     genshen-skin deepking <角色>           导出 DeepKing 皮肤规范包
     genshen-skin sync [角色|--all]         克隆皮肤仓库到本地
-    genshen-skin vendor --out <目录>       把 31 个仓库全部落地（离线收藏）
+    genshen-skin vendor --out <目录>       把 32 个仓库全部落地（离线收藏）
     genshen-skin doctor                    体检：代理 / 网络 / 镜像 / git / Pillow
     genshen-skin uninstall <角色>          卸载（扩展 / 桌宠 / 本地副本）
 """
@@ -59,7 +59,7 @@ def resolve(key, cat=None, strict=True):
         for s in cands[:6]:
             print("  %-10s %s" % (s["id"], s["name"]), file=sys.stderr)
     else:
-        print("没找到 %r。用 `genshen-skin list` 看全部 31 套。" % key, file=sys.stderr)
+        print("没找到 %r。用 `genshen-skin list` 看全部 32 套。" % key, file=sys.stderr)
     if strict:
         raise SystemExit(2)
     return None
@@ -678,7 +678,7 @@ COMMANDS_HELP = """原神桌面皮肤集合 · 全部命令总览
 用法： genshen-skin <命令> [参数]        直接敲 `genshen-skin` 就是这一页
 
 ── 看目录 ─────────────────────────────────────────────────────────
-  list                     列出全部 31 套皮肤与各自可用环境
+  list                     列出全部 32 套皮肤与各自可用环境
   show <角色>              某套皮肤详情（壁纸清单 / 扩展 ID / 安装方式）
   catalog                  打印机器可读目录      --md 表格  --json 原始
   paths                    显示各类本地目录
@@ -702,8 +702,8 @@ COMMANDS_HELP = """原神桌面皮肤集合 · 全部命令总览
   deepking <角色>          DeepKing 皮肤规范包（--out 指定目录）
 
 ── 镜像 / 同步 ─────────────────────────────────────────────────────
-  sync --all               克隆 31 个仓库到 ~/.genshen-skins
-  vendor --out <目录>      把 31 个仓库全部落地到指定目录（离线收藏）
+  sync --all               克隆 32 个仓库到 ~/.genshen-skins
+  vendor --out <目录>      把 32 个仓库全部落地到指定目录（离线收藏）
   mirror                   查看 pip 镜像与 GitHub 加速通道
        --set tuna|ustc|aliyun|tencent|official   设为默认镜像
 
@@ -750,7 +750,7 @@ def cmd_commands(args):
 def build_parser():
     ap = argparse.ArgumentParser(
         prog="genshen-skin",
-        description="原神桌面皮肤集合（31 套）：壁纸 / IDE 扩展 / 桌宠 / DSH 插件 一键安装",
+        description="原神桌面皮肤集合（32 套）：壁纸 / IDE 扩展 / 桌宠 / DSH 插件 一键安装",
         epilog="更多用法见 https://github.com/WPH666-py/Genshen-Desktop-Skin",
     )
     ap.add_argument("-V", "--version", action="version",
@@ -766,7 +766,7 @@ def build_parser():
                        help="显示全部命令总览（直接敲 genshen-skin 同效）")
     p.set_defaults(func=cmd_commands)
 
-    sub.add_parser("list", help="列出全部 31 套皮肤").set_defaults(func=cmd_list)
+    sub.add_parser("list", help="列出全部 32 套皮肤").set_defaults(func=cmd_list)
 
     p = sub.add_parser("show", help="查看某套皮肤的详情")
     p.add_argument("key")
@@ -841,10 +841,10 @@ def build_parser():
 
     p = sub.add_parser("sync", help="克隆皮肤仓库到本地")
     p.add_argument("key", nargs="?", default=None)
-    p.add_argument("--all", action="store_true", help="克隆全部 31 套")
+    p.add_argument("--all", action="store_true", help="克隆全部 32 套")
     p.set_defaults(func=cmd_sync)
 
-    p = sub.add_parser("vendor", help="把 31 个仓库全部落地到指定目录（离线收藏）")
+    p = sub.add_parser("vendor", help="把 32 个仓库全部落地到指定目录（离线收藏）")
     p.add_argument("--out", required=True, help="目标目录")
     p.add_argument("--force", action="store_true", help="已存在也重新拉取")
     p.set_defaults(func=cmd_vendor)
