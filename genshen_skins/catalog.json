@@ -6,8 +6,8 @@
   "homepage": "https://github.com/WPH666-py/Genshen-Desktop-Skin",
   "pypi": "genshen-desktop-skin",
   "cli": "genshen-skin",
-  "count": 32,
-  "generated_at": "2026-09-24T01:02:04Z",
+  "count": 33,
+  "generated_at": "2026-09-24T01:26:24Z",
   "targets": {
     "dsh": "DeepSeek Harness 动态插件（cordis_define + cordis_run）",
     "vscode": "VSCode / Trae / CodeX / Cursor / Windsurf / VSCodium（VSIX 扩展）",
@@ -2098,6 +2098,71 @@
         ],
         "show": "varishaSkin.show",
         "uninstall": "varishaSkin.uninstall"
+      }
+    },
+    {
+      "id": "odette",
+      "no": 33,
+      "repo": "Genshen-Odette-Skin",
+      "url": "https://github.com/WPH666-py/Genshen-Odette-Skin",
+      "raw": "https://raw.githubusercontent.com/WPH666-py/Genshen-Odette-Skin/main",
+      "clone": "https://github.com/WPH666-py/Genshen-Odette-Skin.git",
+      "char": "奥黛塔",
+      "charEn": "Odette",
+      "element": "冰",
+      "aliases": [
+        "odette",
+        "aodaita",
+        "霜羽",
+        "霜羽圆舞",
+        "长春花"
+      ],
+      "name": "奥黛塔 · 霜羽",
+      "nameEn": "Odette · Frostplume",
+      "accent": "#6a7bba",
+      "tagline": "长春花与霜羽：蓝紫长发 × 冰蓝礼裙 × 星辉金饰",
+      "caps": {
+        "dsh": true,
+        "desktop": true,
+        "vscode": true,
+        "deepking": true
+      },
+      "paths": {
+        "dsh_client": "dsh-plugin/client-standalone.js",
+        "dsh_client_standalone": "dsh-plugin/client-standalone.js",
+        "dsh_client_pair": "dsh-plugin/client.js",
+        "dsh_host": "dsh-plugin/host.js",
+        "dsh_assets": "dsh-plugin/素材",
+        "vsix": "vscode-extension/genshen-odette-skin-1.0.0.vsix",
+        "ext_pkg": "vscode-extension/package.json",
+        "desktop_ps1": "desktop/奥黛塔皮肤.ps1",
+        "desktop_bat": "desktop/启动-奥黛塔皮肤.bat",
+        "desktop_assets": "desktop/素材",
+        "deepking_css": "src/client/deepking-skin.module.css",
+        "skin_json": "skin.json",
+        "agents_md": "AGENTS.md",
+        "readme": "README.md",
+        "assets": "dsh-plugin/素材"
+      },
+      "notes": [],
+      "wallpapers": [
+        "dsh-plugin/素材/wall1-web.jpg",
+        "dsh-plugin/素材/wall2-web.jpg",
+        "dsh-plugin/素材/wall3-web.jpg"
+      ],
+      "voices": [
+        "dsh-plugin/素材/语音-元素爆发·其一.mp3"
+      ],
+      "ext": {
+        "id": "wp666.genshen-odette-skin",
+        "displayName": "原神奥黛塔动态皮肤",
+        "version": "1.0.0",
+        "commands": [
+          "odetteSkin.show",
+          "odetteSkin.uninstall"
+        ],
+        "show": "odetteSkin.show",
+        "uninstall": "odetteSkin.uninstall"
       }
     }
   ]

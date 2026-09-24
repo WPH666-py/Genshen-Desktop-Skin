@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """genshen_skins —— 原神桌面皮肤集合（Genshen Desktop Skin）的统一安装器。
 
-32 套原神角色动态皮肤，一套素材多平台安装：
+33 套原神角色动态皮肤，一套素材多平台安装：
 
     DSH 动态插件 / VSCode·Trae·CodeX 扩展 / PyCharm 背景图 /
     DeepKing 规范包 / Windows 桌面置顶桌宠
